@@ -1,0 +1,40 @@
+@tailwind base;
+
+@layer utilities {
+  .focus {
+    @apply outline-none focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 dark:focus-visible:ring-blue-300;
+  }
+}
+
+.prose img {
+  @apply rounded-md shadow-md;
+}
+
+.prose video {
+  @apply rounded-md shadow-md;
+}
+
+.prose {
+  max-width: none;
+}
+
+hr {
+  @apply !border-gray-300 dark:!border-gray-700;
+}
+
+button {
+  @apply rounded-md;
+  @apply focus;
+}
+
+a {
+  @apply rounded-sm;
+  @apply focus;
+}
+
+svg {
+  @apply outline-none focus:outline-none;
+}
+
+@tailwind components;
+@tailwind utilities;

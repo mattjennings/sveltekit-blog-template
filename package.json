@@ -1,0 +1,43 @@
+{
+	"name": "sveltekit-blog-template",
+	"version": "0.0.1",
+	"scripts": {
+		"dev": "svelte-kit dev",
+		"build": "svelte-kit build",
+		"preview": "svelte-kit preview",
+		"lint": "prettier --check . && eslint --ignore-path .gitignore .",
+		"format": "prettier --write ."
+	},
+	"devDependencies": {
+		"@sveltejs/adapter-vercel": "^1.0.0-next.24",
+		"@sveltejs/kit": "^1.0.0-next.123",
+		"@tailwindcss/typography": "^0.4.1",
+		"autoprefixer": "^10.2.6",
+		"cssnano": "^5.0.5",
+		"eslint-config-prettier": "^8.3.0",
+		"eslint": "^7.22.0",
+    "eslint-plugin-svelte3": "^3.2.0",
+		"just-camel-case": "^4.0.2",
+		"mdsvex": "^0.9.6",
+		"postcss": "^8.3.0",
+		"postcss-focus-visible": "^5.0.0",
+		"postcss-load-config": "^3.0.1",
+		"prettier": "~2.2.1",
+		"prettier-plugin-svelte": "^2.3.0",
+		"rehype-autolink-headings": "^5.1.0",
+		"rehype-slug": "^4.0.1",
+		"svelte": "^3.38.2",
+		"svelte-preprocess": "^4.7.3",
+		"tailwindcss": "^2.2.4",
+		"unist-util-visit": "^3.1.0"
+	},
+	"type": "module",
+	"dependencies": {
+		"@mattjennings/heroicons-svelte": "^0.0.6",
+		"clsx": "^1.1.1",
+		"date-fns": "^2.22.1",
+		"focus-visible": "^5.2.0",
+		"remark-preview": "^1.0.0",
+		"remark-reading-time": "^1.0.1"
+	}
+}
