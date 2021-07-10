@@ -1,6 +1,6 @@
 # sveltekit-blog-template
 
-A SvelteKit blog template based on what I used in [https://mattjennings.io](https://mattjennings.io).
+A SvelteKit blog template based on what I used in [mattjennings.io](https://mattjennings.io).
 
 ## Features
 

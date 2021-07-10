@@ -32,6 +32,7 @@
   import { format } from 'date-fns'
   import ButtonLink from '$lib/components/ButtonLink.svelte'
   import { name, website } from '$lib/info'
+  import { page } from '$app/stores'
 
   export let component
 
@@ -45,11 +46,13 @@
     return new Date(new Date(date).valueOf() + new Date(date).getTimezoneOffset() * 60 * 1000)
   }
 
-  const ogImage = `https://og-image.vercel.app/${encodeURIComponent(
+  // generated open-graph image for sharing on social media. Visit https://og-image.vercel.app/ to see more options.
+  const ogImage = `https://og-image.vercel.app/**${encodeURIComponent(
     title
-  )}?theme=light&md=1&fontSize=100px&images=https%3A%2F%2Fassets.vercel.com%2Fimage%2Fupload%2Ffront%2Fassets%2Fdesign%2Fhyper-color-logo.svg`
+  )}**?theme=light&md=1&fontSize=100px&images=https%3A%2F%2Fassets.vercel.com%2Fimage%2Fupload%2Ffront%2Fassets%2Fdesign%2Fhyper-color-logo.svg`
 
   const url = `${website}/${slug}`
+  const [blogUrl] = $page.path.split(slug)
 </script>
 
 <svelte:head>
@@ -86,5 +89,5 @@
 </article>
 
 <div class="pt-12 flex justify-start">
-  <ButtonLink isBack href="/">Blog Posts</ButtonLink>
+  <ButtonLink isBack href={blogUrl}>Blog Posts</ButtonLink>
 </div>

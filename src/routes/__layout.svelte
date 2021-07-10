@@ -1,6 +1,6 @@
 <script>
-  import '../app.css'
   import '../prism.css'
+  import '../app.css'
   import 'focus-visible'
   import { MoonIcon, SunIcon } from '@mattjennings/heroicons-svelte/solid'
   import { browser } from '$app/env'

@@ -14,10 +14,8 @@ module.exports = {
                 paddingBottom: theme('spacing.1'),
                 paddingLeft: theme('spacing.1'),
                 paddingRight: theme('spacing.1'),
-                backgroundColor: theme('colors.gray.800'),
                 fontFamily: 'inherit !important',
                 fontWeight: '500 !important',
-                whiteSpace: 'nowrap',
                 color: theme('colors.gray.900'),
                 backgroundColor: theme('colors.gray.300')
               },

@@ -14,7 +14,8 @@ specifiers:
   eslint-plugin-svelte3: ^3.2.0
   focus-visible: ^5.2.0
   just-camel-case: ^4.0.2
-  mdsvex: ^0.9.6
+  mdsvex: ^0.9.8
+  mdsvex-relative-images: ^0.0.3
   postcss: ^8.3.0
   postcss-focus-visible: ^5.0.0
   postcss-load-config: ^3.0.1
@@ -39,15 +40,16 @@ dependencies:
 
 devDependencies:
   '@sveltejs/adapter-vercel': 1.0.0-next.24
-  '@sveltejs/kit': 1.0.0-next.123_svelte@3.38.3
+  '@sveltejs/kit': 1.0.0-next.124_svelte@3.38.3
   '@tailwindcss/typography': 0.4.1_tailwindcss@2.2.4
-  autoprefixer: 10.2.6_postcss@8.3.5
+  autoprefixer: 10.3.0_postcss@8.3.5
   cssnano: 5.0.6_postcss@8.3.5
   eslint: 7.30.0
   eslint-config-prettier: 8.3.0_eslint@7.30.0
   eslint-plugin-svelte3: 3.2.0_eslint@7.30.0+svelte@3.38.3
   just-camel-case: 4.0.2
   mdsvex: 0.9.8_svelte@3.38.3
+  mdsvex-relative-images: 0.0.3
   postcss: 8.3.5
   postcss-focus-visible: 5.0.0
   postcss-load-config: 3.1.0
@@ -57,7 +59,7 @@ devDependencies:
   rehype-slug: 4.0.1
   svelte: 3.38.3
   svelte-preprocess: 4.7.4_7d4d22e7287a4965435cb62392efd75a
-  tailwindcss: 2.2.4_72be89de93206f86f2d67dd5290ec14d
+  tailwindcss: 2.2.4_ab1f570292601e188570cd782149477a
   unist-util-visit: 3.1.0
 
 packages:
@@ -178,8 +180,8 @@ packages:
       esbuild: 0.12.15
     dev: true
 
-  /@sveltejs/kit/1.0.0-next.123_svelte@3.38.3:
-    resolution: {integrity: sha512-C9UZ5yYdU94hjpmwTPmDpCWphPc9RsSR4TxV67JM+SqDrSCMKx65JI3+goQQzY2ZHARUGukoc1+ijaRxW48AWQ==}
+  /@sveltejs/kit/1.0.0-next.124_svelte@3.38.3:
+    resolution: {integrity: sha512-opqmEj/OXJbLEqN+V03mxHvNf53ALT0HUaCmfe5FwQ4Cy5xE8yTlJulB27stnqMPxCeTk5XaCdmN9vDQgd+khA==}
     engines: {node: ^12.20 || >=14.13}
     hasBin: true
     peerDependencies:
@@ -224,7 +226,7 @@ packages:
       lodash.isplainobject: 4.0.6
       lodash.merge: 4.6.2
       lodash.uniq: 4.5.0
-      tailwindcss: 2.2.4_72be89de93206f86f2d67dd5290ec14d
+      tailwindcss: 2.2.4_ab1f570292601e188570cd782149477a
     dev: true
 
   /@trysound/sax/0.1.1:
@@ -370,8 +372,8 @@ packages:
     engines: {node: '>=8'}
     dev: true
 
-  /autoprefixer/10.2.6_postcss@8.3.5:
-    resolution: {integrity: sha512-8lChSmdU6dCNMCQopIf4Pe5kipkAGj/fvTMslCsih0uHpOrXOPUEVOmYMMqmw3cekQkSD7EhIeuYl5y0BLdKqg==}
+  /autoprefixer/10.3.0_postcss@8.3.5:
+    resolution: {integrity: sha512-BzVzdjs47nT3MphTddr8eSsPVEIUCF96X6iC8V5iEB8RtxrU+ybtdhHV5rsqRqOsoyh/acQaYs7YupHPUECgmg==}
     engines: {node: ^10 || ^12 || >=14}
     hasBin: true
     peerDependencies:
@@ -1582,6 +1584,13 @@ packages:
     resolution: {integrity: sha512-dn6wd0uw5GsdswPFfsgMp5NSB0/aDe6fK94YJV/AJDYXL6HVLWBsxeq7js7Ad+mU2K9LAlwpk6kN2D5mwCPVow==}
     dev: true
 
+  /mdsvex-relative-images/0.0.3:
+    resolution: {integrity: sha512-nRvWKTASNo9C+yPLFGz4BaeoOzZdx/spIBECeH1X8BvKdRDpdJhppIp5sgfFYKfrlCem1Gh/KD846IRn8WizNA==}
+    dependencies:
+      just-camel-case: 4.0.2
+      unist-util-visit: 3.1.0
+    dev: true
+
   /mdsvex/0.9.8_svelte@3.38.3:
     resolution: {integrity: sha512-5QvThjRKoKkGH00qdHxLZ5ROd80RgGiJvM2B9opeFreaiGFTLoKKFUgEBCslLrwM24cVGJLmIM3rR83OFDf3tQ==}
     peerDependencies:
@@ -2572,7 +2581,7 @@ packages:
       strip-ansi: 6.0.0
     dev: true
 
-  /tailwindcss/2.2.4_72be89de93206f86f2d67dd5290ec14d:
+  /tailwindcss/2.2.4_ab1f570292601e188570cd782149477a:
     resolution: {integrity: sha512-OdBCPgazNNsknSP+JfrPzkay9aqKjhKtFhbhgxHgvEFdHy/GuRPo2SCJ4w1SFTN8H6FPI4m6qD/Jj20NWY1GkA==}
     engines: {node: '>=12.13.0'}
     hasBin: true
@@ -2582,7 +2591,7 @@ packages:
     dependencies:
       '@fullhuman/postcss-purgecss': 4.0.3_postcss@8.3.5
       arg: 5.0.0
-      autoprefixer: 10.2.6_postcss@8.3.5
+      autoprefixer: 10.3.0_postcss@8.3.5
       bytes: 3.1.0
       chalk: 4.1.1
       chokidar: 3.5.2
