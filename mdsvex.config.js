@@ -47,10 +47,6 @@ export default {
  * Add slug to metadata and convert `date` timezone to UTC
  */
 function posts() {
-  function convertToUTC(date) {
-    return new Date(new Date(date).valueOf() + new Date(date).getTimezoneOffset() * 60 * 1000)
-  }
-
   return (_, file) => {
     const parsed = path.parse(file.filename)
     const slug =
@@ -59,7 +55,9 @@ function posts() {
     file.data.fm = {
       ...file.data.fm,
       slug,
-      date: file.data.fm.date ? convertToUTC(file.data.fm.date) : undefined
+
+      // remove timezone from parsed date
+      date: file.data.fm.date ? new Date(file.data.fm.date).toLocaleDateString() : undefined
     }
   }
 }

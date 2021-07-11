@@ -25,7 +25,7 @@ All of your posts (including this one) are located in `/posts`. You can add a ne
 /posts/my-first-post/index.md
 ```
 
-Make sure your posts have `title` and `date` properties in the frontmatter. The `date` property should be in the format of `YYYY-MM-DD`.
+Make sure your posts have `title` and `date` properties in the frontmatter.
 
 ```md
 ---
