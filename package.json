@@ -25,6 +25,8 @@
 		"prettier-plugin-svelte": "^2.3.0",
 		"rehype-autolink-headings": "^5.1.0",
 		"rehype-slug": "^4.0.1",
+		"remark-preview": "^1.0.0",
+		"remark-reading-time": "^1.0.1",
 		"mdsvex-relative-images": "^0.0.3",
 		"svelte": "^3.38.2",
 		"svelte-preprocess": "^4.7.3",
@@ -36,8 +38,6 @@
 		"@mattjennings/heroicons-svelte": "^0.0.6",
 		"clsx": "^1.1.1",
 		"date-fns": "^2.22.1",
-		"focus-visible": "^5.2.0",
-		"remark-preview": "^1.0.0",
-		"remark-reading-time": "^1.0.1"
+		"focus-visible": "^5.2.0"
 	}
 }
