@@ -2,21 +2,33 @@
   /**
    * @type {import('@sveltejs/kit').Load}
    */
-  export async function load({ page, fetch }) {
-    // import the markdown file which will return the metadata and a Svelte component
-    const { default: component } = await import(`../../../posts/${page.params.slug}/index.md`)
+  export async function load({ page: { params } }) {
+    // get all posts
+    const posts = Object.entries(import.meta.globEager('/posts/**/*.md'))
+      .map(([, post]) => ({
+        // frontmatter data
+        metadata: post.metadata,
 
-    // metadata can be taken from the above import as well, but we need the next/previous properties
-    // that we add in [slug].json.js
-    const metadata = await fetch(`/posts/${page.params.slug}.json`).then((res) => res.json())
+        // the processed Svelte component from the markdown file
+        component: post.default
+      }))
+      .sort((a, b) => (a.date < b.date ? 1 : -1))
+
+    const { slug } = params
+    const index = posts.findIndex((post) => slug === post.metadata.slug)
+
+    const { metadata, component } = posts[index]
+
+    // next/previous posts
+    const next = posts[index + 1]?.metadata
+    const previous = posts[index - 1]?.metadata
 
     return {
       props: {
-        // frontmatter data from post
+        component,
         ...metadata,
-
-        // the processed Svelte component from mdsvex
-        component
+        next,
+        previous
       }
     }
   }
