@@ -1,6 +1,6 @@
 <script>
-  import '../prism.css'
   import '../app.css'
+  import '../prism.css'
   import 'focus-visible'
   import { MoonIcon, SunIcon } from '@mattjennings/heroicons-svelte/solid'
   import { browser } from '$app/env'
@@ -10,7 +10,7 @@
 </script>
 
 <div class="flex flex-col min-h-screen">
-  <div class="max-w-4xl mx-auto flex flex-col flex-grow w-full">
+  <div class="mx-auto flex flex-col flex-grow w-full max-w-4xl">
     <div class="flex h-16 px-4 py-2 justify-between items-center">
       <h1 class="text-lg sm:text-2xl font-bold text-gray-800 dark:text-white">
         <a href="/">{name}</a>
@@ -42,7 +42,7 @@
       {/if}
     </div>
     <main
-      class="flex flex-col w-full flex-grow prose prose-sm sm:prose-lg dark:prose-dark py-4 px-4"
+      class="flex flex-col w-full flex-grow prose prose-sm sm:prose lg:prose-lg dark:prose-dark py-4 px-4"
     >
       <slot />
     </main>

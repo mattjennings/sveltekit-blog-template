@@ -28,7 +28,7 @@ export default {
         attribute: 'previewHtml'
       }
     ),
-    postsMeta,
+    posts,
     videos,
     relativeImages
   ],
@@ -44,19 +44,22 @@ export default {
 }
 
 /**
- * Adds some extra meta information for posts
+ * Add slug to metadata and convert `date` timezone to UTC
  */
-function postsMeta() {
-  function offsetTimezone(date) {
+function posts() {
+  function convertToUTC(date) {
     return new Date(new Date(date).valueOf() + new Date(date).getTimezoneOffset() * 60 * 1000)
   }
-  return (tree, file) => {
+
+  return (_, file) => {
     const parsed = path.parse(file.filename)
+    const slug =
+      parsed.name === 'index' ? path.parse(file.filename).dir.split('/').pop() : parsed.name
 
     file.data.fm = {
       ...file.data.fm,
-      slug: parsed.name === 'index' ? path.parse(file.filename).dir.split('/').pop() : parsed.name,
-      created: file.data.fm ? offsetTimezone(new Date(file.data.fm.created)) : undefined
+      slug,
+      date: file.data.fm.date ? convertToUTC(file.data.fm.date) : undefined
     }
   }
 }

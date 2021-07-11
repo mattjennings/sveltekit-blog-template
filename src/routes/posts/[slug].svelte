@@ -1,29 +1,23 @@
 <script context="module">
-  import { isBefore } from 'date-fns'
-
   /**
    * @type {import('@sveltejs/kit').Load}
    */
-  export async function load({ page }) {
-    const res = await import(`../../posts/${page.params.slug}/index.md`)
+  export async function load({ page, fetch }) {
+    // import the markdown file which will return the metadata and a Svelte component
+    const { default: component } = await import(`../../../posts/${page.params.slug}/index.md`)
 
-    if (!isBefore(new Date(res.metadata.created), new Date())) {
-      return {
-        props: {},
-        redirect: '/404',
-        status: 307
-      }
-    }
+    // metadata can be taken from the above import as well, but we need the next/previous properties
+    // that we add in [slug].json.js
+    const metadata = await fetch(`/posts/${page.params.slug}.json`).then((res) => res.json())
+
     return {
       props: {
         // frontmatter data from post
-        ...res.metadata,
+        ...metadata,
 
         // the processed Svelte component from mdsvex
-        component: res.default
-      },
-      // 10 minutes
-      maxage: 60 * 10
+        component
+      }
     }
   }
 </script>
@@ -32,19 +26,17 @@
   import { format } from 'date-fns'
   import ButtonLink from '$lib/components/ButtonLink.svelte'
   import { name, website } from '$lib/info'
-  import { page } from '$app/stores'
 
   export let component
 
+  // metadata
   export let title
-  export let created
+  export let date
   export let preview
   export let readingTime
   export let slug
-
-  function fixTimezone(date) {
-    return new Date(new Date(date).valueOf() + new Date(date).getTimezoneOffset() * 60 * 1000)
-  }
+  export let next
+  export let previous
 
   // generated open-graph image for sharing on social media. Visit https://og-image.vercel.app/ to see more options.
   const ogImage = `https://og-image.vercel.app/**${encodeURIComponent(
@@ -52,7 +44,6 @@
   )}**?theme=light&md=1&fontSize=100px&images=https%3A%2F%2Fassets.vercel.com%2Fimage%2Fupload%2Ffront%2Fassets%2Fdesign%2Fhyper-color-logo.svg`
 
   const url = `${website}/${slug}`
-  const [blogUrl] = $page.path.split(slug)
 </script>
 
 <svelte:head>
@@ -79,15 +70,20 @@
 <article>
   <h1 class="!mt-0 !mb-1">{title}</h1>
   <div>
-    <time datetime={new Date(fixTimezone(created)).toISOString()}
-      >{format(fixTimezone(created), 'MMMM d, yyyy')}</time
-    >
+    <time datetime={new Date(date).toISOString()}>{format(new Date(date), 'MMMM d, yyyy')}</time>
     •
     <span>{readingTime.text}</span>
   </div>
   <svelte:component this={component} />
 </article>
 
-<div class="pt-12 flex justify-start">
-  <ButtonLink isBack href={blogUrl}>Blog Posts</ButtonLink>
+<div class="pt-12 flex justify-between">
+  {#if previous}
+    <ButtonLink isBack href={`/posts/${previous.slug}`}>{previous.title}</ButtonLink>
+  {:else}
+    <div />
+  {/if}
+  {#if next}
+    <ButtonLink href={`/posts/${next.slug}`}>{next.title}</ButtonLink>
+  {/if}
 </div>

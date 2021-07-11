@@ -8,6 +8,7 @@ module.exports = {
         return {
           DEFAULT: {
             css: {
+              maxWidth: 'none',
               code: {
                 borderRadius: theme('borderRadius.md'),
                 paddingTop: theme('spacing.1'),
@@ -46,14 +47,29 @@ module.exports = {
                   fontWeight: 'inherit',
                   textDecoration: 'none'
                 }
+              },
+              h1: {
+                fontSize: theme('fontSize.2xl')
+              },
+              h2: {
+                fontSize: theme('fontSize.xl')
+              },
+              h3: {
+                fontSize: theme('fontSize.md')
+              },
+              h4: {
+                fontSize: theme('fontSize.base')
+              },
+              h5: {
+                fontSize: theme('fontSize.base')
+              },
+              h6: {
+                fontSize: theme('fontSize.base')
               }
             }
           },
           sm: {
             css: {
-              'pre code': {
-                fontSize: theme('fontSize.sm')[0]
-              },
               h1: {
                 fontSize: theme('fontSize.xl')
               },
@@ -65,14 +81,17 @@ module.exports = {
               },
               h4: {
                 fontSize: theme('fontSize.base')
+              },
+              h5: {
+                fontSize: theme('fontSize.base')
+              },
+              h6: {
+                fontSize: theme('fontSize.base')
               }
             }
           },
           lg: {
             css: {
-              'pre code': {
-                fontSize: theme('fontSize.base')[0]
-              },
               code: {
                 paddingLeft: theme('spacing.2'),
                 paddingRight: theme('spacing.2')
