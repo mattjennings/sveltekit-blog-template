@@ -12,7 +12,7 @@
         // the processed Svelte component from the markdown file
         component: post.default
       }))
-      .sort((a, b) => (a.date < b.date ? 1 : -1))
+      .sort((a, b) => (a.metadata.date < b.metadata.date ? 1 : -1))
 
     const { slug } = params
     const index = posts.findIndex((post) => slug === post.metadata.slug)
@@ -20,8 +20,8 @@
     const { metadata, component } = posts[index]
 
     // next/previous posts
-    const next = posts[index + 1]?.metadata
-    const previous = posts[index - 1]?.metadata
+    const next = posts[index - 1]?.metadata
+    const previous = posts[index + 1]?.metadata
 
     return {
       props: {
