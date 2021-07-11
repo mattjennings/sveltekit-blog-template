@@ -6,7 +6,10 @@ const posts = Object.entries(import.meta.globEager('/posts/**/*.md')).reduce((ac
   }
 }, {})
 
-const order = Object.keys(posts).sort((a, b) => (a.date < b.date ? 1 : -1))
+const order = Object.entries(posts)
+  .map(([, post]) => post)
+  .sort((a, b) => (a.date < b.date ? 1 : -1))
+  .map((post) => post.slug)
 
 /**
  * Returns metadata for an individual post,
@@ -18,8 +21,8 @@ export async function get({ params }) {
   const { slug } = params
 
   const index = order.indexOf(slug)
-  const next = posts[order[index + 1]]
-  const previous = posts[order[index - 1]]
+  const next = posts[order[index - 1]]
+  const previous = posts[order[index + 1]]
 
   return {
     body: {
