@@ -1,9 +1,5 @@
 # sveltekit-blog-template
 
-A SvelteKit blog template based on what I used in [mattjennings.io](https://mattjennings.io).
+A SvelteKit blog template built on mdsvex and tailwind.
 
-## Features
-
-- Mdsvex (with a collection of helpful plugins)
-- Tailwind
-- Dark mode
+[Demo](https://sveltekit-blog-template.vercel.app)
