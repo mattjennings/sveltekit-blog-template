@@ -2,8 +2,6 @@
   // how many blog posts per page
   const PAGE_SIZE = 10
 
-  export const prerender = true
-
   export const load = async ({ page: { query } }) => {
     const posts = Object.entries(import.meta.globEager('/posts/**/*.md'))
       // get post metadata
@@ -35,9 +33,9 @@
 </script>
 
 <script>
-  import ButtonLink from '$lib/components/ButtonLink.svelte'
-  import { format } from 'date-fns'
-  import { name } from '$lib/info.js'
+  import ButtonLink from '$lib/components/ButtonLink.svelte';
+  import { name } from '$lib/info.js';
+  import { format } from 'date-fns';
 
   export let posts
   export let page
