@@ -1,6 +1,6 @@
 <script context="module">
   // how many blog posts per page
-  const PAGE_SIZE = 1
+  const PAGE_SIZE = 10
 
   export const prerender = true
 
