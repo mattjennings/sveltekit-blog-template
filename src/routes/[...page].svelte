@@ -1,10 +1,12 @@
 <script context="module">
   // how many blog posts per page
-  const PAGE_SIZE = 10
+  const PAGE_SIZE = 1
 
   export const prerender = true
 
-  export const load = async ({ page: { query } }) => {
+  export const load = async ({ page: { params } }) => {
+    const page = parseInt(params.page) || 1
+
     const posts = Object.entries(import.meta.globEager('/posts/**/*.md'))
       // get post metadata
       .map(([, post]) => post.metadata)
@@ -21,9 +23,6 @@
           previous
         }
       })
-
-    // get page parameter from URL
-    const page = parseInt(query.get('page') ?? '1')
 
     return {
       props: {
@@ -73,7 +72,7 @@
     <div class="flex visible items-center justify-between pt-8">
       <!-- hide with visibility:false so that the layout doesn't shift -->
       <div class:invisible={isFirstPage} aria-hidden={isFirstPage}>
-        <ButtonLink isBack href={`/?page=${page - 1}`}>Previous</ButtonLink>
+        <ButtonLink isBack href={`/${page - 1}`}>Previous</ButtonLink>
       </div>
 
       <div>
@@ -84,7 +83,7 @@
       </div>
 
       <div class:invisible={!hasNextPage} aria-hidden={!hasNextPage}>
-        <ButtonLink href={`/?page=${page + 1}`}>Next</ButtonLink>
+        <ButtonLink href={`/${page + 1}`}>Next</ButtonLink>
       </div>
     </div>
   </div>
