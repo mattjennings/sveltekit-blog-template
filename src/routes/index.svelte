@@ -6,7 +6,7 @@
   export const load = async () => {
     return {
       props: {
-        posts: getPosts().map((post) => post.metadata)
+        posts: getPosts().map(post => post.metadata)
       }
     }
   }

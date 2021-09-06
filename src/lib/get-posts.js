@@ -11,8 +11,8 @@ export function getPosts({ page = 1, limit } = {}) {
     .sort((a, b) => (a.metadata.date < b.metadata.date ? 1 : -1))
     // next/previous posts
     .map((post, index, array) => {
-      const next = array[index - 1]?.metadata
-      const previous = array[index + 1]?.metadata
+      const next = array[index - 1]
+      const previous = array[index + 1]
 
       return {
         ...post,
