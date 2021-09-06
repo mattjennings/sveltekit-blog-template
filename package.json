@@ -30,8 +30,8 @@
 		"remark-reading-time": "^1.0.1",
 		"svelte": "^3.38.2",
 		"svelte-preprocess": "^4.7.3",
-		"tailwindcss": "^2.2.4",
-		"unist-util-visit": "^3.1.0"
+		"tailwindcss": "^2.2.9",
+		"unist-util-visit": "^3.1.0"		
 	},
 	"type": "module",
 	"dependencies": {
