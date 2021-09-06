@@ -1,27 +1,16 @@
 <script context="module">
+  import { getPosts } from '$lib/get-posts'
+
   /**
    * @type {import('@sveltejs/kit').Load}
    */
   export async function load({ page: { params } }) {
-    // get all posts
-    const posts = Object.entries(import.meta.globEager('/posts/**/*.md'))
-      .map(([, post]) => ({
-        // frontmatter data
-        metadata: post.metadata,
-
-        // the processed Svelte component from the markdown file
-        component: post.default
-      }))
-      .sort((a, b) => (a.metadata.date < b.metadata.date ? 1 : -1))
+    const posts = getPosts()
 
     const { slug } = params
     const index = posts.findIndex((post) => slug === post.metadata.slug)
 
-    const { metadata, component } = posts[index]
-
-    // next/previous posts
-    const next = posts[index - 1]?.metadata
-    const previous = posts[index + 1]?.metadata
+    const { metadata, component, next, previous } = posts[index]
 
     return {
       props: {
