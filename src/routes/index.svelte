@@ -1,32 +1,12 @@
 <script context="module">
-  // how many blog posts per page
-  const PAGE_SIZE = 10
+  import { getPosts } from '$lib/get-posts'
 
-  export const load = async ({ page: { query } }) => {
-    const posts = Object.entries(import.meta.globEager('/posts/**/*.md'))
-      // get post metadata
-      .map(([, post]) => post.metadata)
-      // sort by date
-      .sort((a, b) => (a.date < b.date ? 1 : -1))
-      .map((post, index, array) => {
-        // next/previous posts
-        const next = array[index - 1]
-        const previous = array[index + 1]
+  export const prerender = true
 
-        return {
-          ...post,
-          next,
-          previous
-        }
-      })
-
-    // get page parameter from URL
-    const page = parseInt(query.get('page') ?? '1')
-
+  export const load = async () => {
     return {
       props: {
-        posts: posts.slice((page - 1) * PAGE_SIZE, page * PAGE_SIZE),
-        page: page
+        posts: getPosts().map(post => post.metadata)
       }
     }
   }
@@ -38,10 +18,6 @@
   import { format } from 'date-fns';
 
   export let posts
-  export let page
-
-  $: isFirstPage = page === 1
-  $: hasNextPage = posts[posts.length - 1]?.previous
 </script>
 
 <svelte:head>
@@ -66,24 +42,5 @@
         </div>
       </div>
     {/each}
-
-    <!-- pagination -->
-    <div class="flex visible items-center justify-between pt-8">
-      <!-- hide with visibility:false so that the layout doesn't shift -->
-      <div class:invisible={isFirstPage} aria-hidden={isFirstPage}>
-        <ButtonLink isBack href={`/?page=${page - 1}`}>Previous</ButtonLink>
-      </div>
-
-      <div>
-        <!-- only show on first page if there's more than 1 page -->
-        {#if !isFirstPage || hasNextPage}
-          Page {page}
-        {/if}
-      </div>
-
-      <div class:invisible={!hasNextPage} aria-hidden={!hasNextPage}>
-        <ButtonLink href={`/?page=${page + 1}`}>Next</ButtonLink>
-      </div>
-    </div>
   </div>
 </div>

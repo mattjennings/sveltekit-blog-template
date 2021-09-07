@@ -9,8 +9,8 @@
 		"format": "prettier --write ."
 	},
 	"devDependencies": {
-		"@sveltejs/adapter-static": "next",
-		"@sveltejs/kit": "next",
+		"@sveltejs/adapter-static": "^1.0.0-next.18",
+		"@sveltejs/kit": "^1.0.0-next.164",
 		"@tailwindcss/typography": "^0.4.1",
 		"autoprefixer": "^10.2.6",
 		"cssnano": "^5.0.5",
@@ -30,14 +30,14 @@
 		"remark-reading-time": "^1.0.1",
 		"svelte": "^3.38.2",
 		"svelte-preprocess": "^4.7.3",
-		"tailwindcss": "^2.2.4",
-		"unist-util-visit": "^3.1.0"
+		"tailwindcss": "^2.2.9",
+		"unist-util-visit": "^3.1.0"		
 	},
 	"type": "module",
 	"dependencies": {
-		"@mattjennings/heroicons-svelte": "^0.0.6",
 		"clsx": "^1.1.1",
 		"date-fns": "^2.22.1",
-		"focus-visible": "^5.2.0"
+		"focus-visible": "^5.2.0",
+		"heroicons-svelte": "^0.0.1"
 	}
 }

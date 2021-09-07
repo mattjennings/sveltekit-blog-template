@@ -1,34 +1,27 @@
 <script context="module">
+  import { getPosts } from '$lib/get-posts'
+
   /**
    * @type {import('@sveltejs/kit').Load}
    */
   export async function load({ page: { params } }) {
-    // get all posts
-    const posts = Object.entries(import.meta.globEager('/posts/**/*.md'))
-      .map(([, post]) => ({
-        // frontmatter data
-        metadata: post.metadata,
-
-        // the processed Svelte component from the markdown file
-        component: post.default
-      }))
-      .sort((a, b) => (a.metadata.date < b.metadata.date ? 1 : -1))
-
     const { slug } = params
-    const index = posts.findIndex((post) => slug === post.metadata.slug)
 
-    const { metadata, component } = posts[index]
+    const post = getPosts().find((post) => slug === post.metadata.slug)
 
-    // next/previous posts
-    const next = posts[index - 1]?.metadata
-    const previous = posts[index + 1]?.metadata
+    if (!post) {
+      return {
+        status: 404,
+        error: 'Post not found'
+      }
+    }
 
     return {
       props: {
-        component,
-        ...metadata,
-        next,
-        previous
+        ...post.metadata,
+        next: post.next?.metadata,
+        previous: post.previous?.metadata,
+        component: post.component
       }
     }
   }

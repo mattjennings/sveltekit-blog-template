@@ -74,7 +74,7 @@ The [mdsvex-relative-images](https://github.com/mattjennings/mdsvex-relative-ima
 
 ## Preview
 
-[remark-preview](https://github.com/mattjennings/remark-preview) provides snippets for each post in their frontmatter. I have it configured so the `preview` frontmatter property contains plain-text (which we use for SEO), and `previewHtml` contains formatted HTML (which we use to preview to the user).
+[remark-preview](https://github.com/mattjennings/remark-preview) provides snippets for each post in their frontmatter. I have it configured so the `preview` frontmatter property contains plain-text (which we use for SEO), and `previewHtml` contains formatted HTML (which we use to preview to the user). Beware that the preview content does not run through mdsvex, so mdsvex-specific features and plugins will not work in preview (such as components, or relative images unfortunately).
 
 Feel free to look at the docs for remark-preview as there are a few ways you can customize it.
 
