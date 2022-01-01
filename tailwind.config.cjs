@@ -1,14 +1,19 @@
 module.exports = {
-  mode: 'jit',
   darkMode: 'class',
-  purge: ['./src/**/*.{html,js,svelte,ts,md,svx}'],
+  content: ['./src/**/*.{html,js,svelte,ts,md,svx}'],
   theme: {
     extend: {
-      typography: (theme) => {
+      typography: ({ theme }) => {
         return {
           DEFAULT: {
             css: {
               maxWidth: 'none',
+              pre: {
+                code: {
+                  padding: '0 !important',
+                  fontSize: theme('fontSize.base')[0]
+                }
+              },
               code: {
                 borderRadius: theme('borderRadius.md'),
                 paddingTop: theme('spacing.1'),
@@ -49,44 +54,49 @@ module.exports = {
                 }
               },
               h1: {
-                fontSize: theme('fontSize.2xl')
+                fontSize: theme('fontSize.2xl')[0]
               },
               h2: {
-                fontSize: theme('fontSize.xl')
+                fontSize: theme('fontSize.xl')[0]
               },
               h3: {
-                fontSize: theme('fontSize.md')
+                fontSize: theme('fontSize.base')[0]
               },
               h4: {
-                fontSize: theme('fontSize.base')
+                fontSize: theme('fontSize.base')[0]
               },
               h5: {
-                fontSize: theme('fontSize.base')
+                fontSize: theme('fontSize.base')[0]
               },
               h6: {
-                fontSize: theme('fontSize.base')
+                fontSize: theme('fontSize.base')[0]
               }
             }
           },
           sm: {
             css: {
+              pre: {
+                code: {
+                  fontSize: theme('fontSize.xs')[0]
+                }
+              },
               h1: {
-                fontSize: theme('fontSize.xl')
+                fontSize: theme('fontSize.xl')[0]
               },
               h2: {
-                fontSize: theme('fontSize.lg')
+                fontSize: theme('fontSize.lg')[0]
               },
               h3: {
-                fontSize: theme('fontSize.base')
+                fontSize: theme('fontSize.base')[0]
               },
               h4: {
-                fontSize: theme('fontSize.base')
+                fontSize: theme('fontSize.base')[0]
               },
               h5: {
-                fontSize: theme('fontSize.base')
+                fontSize: theme('fontSize.base')[0]
               },
               h6: {
-                fontSize: theme('fontSize.base')
+                fontSize: theme('fontSize.base')[0]
               }
             }
           },
@@ -97,16 +107,16 @@ module.exports = {
                 paddingRight: theme('spacing.2')
               },
               h1: {
-                fontSize: theme('fontSize.3xl')
+                fontSize: theme('fontSize.3xl')[0]
               },
               h2: {
-                fontSize: theme('fontSize.2xl')
+                fontSize: theme('fontSize.2xl')[0]
               },
               h3: {
-                fontSize: theme('fontSize.xl')
+                fontSize: theme('fontSize.xl')[0]
               },
               h4: {
-                fontSize: theme('fontSize.lg')
+                fontSize: theme('fontSize.lg')[0]
               }
             }
           },

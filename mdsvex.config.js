@@ -3,35 +3,13 @@ import { visit } from 'unist-util-visit'
 import autolinkHeadings from 'rehype-autolink-headings'
 import slugPlugin from 'rehype-slug'
 import relativeImages from 'mdsvex-relative-images'
-import readingTime from 'remark-reading-time'
-import preview, { textFormatter, htmlFormatter } from 'remark-preview'
 
 export default {
   extensions: ['.svx', '.md'],
   smartypants: {
     dashes: 'oldschool'
   },
-  remarkPlugins: [
-    // adds a `readingTime` frontmatter attribute
-    readingTime(),
-
-    // Add a text preview snippet (no formatting) so we can use it in the meta description tag
-    preview(textFormatter({ length: 300, maxBlocks: 1 })),
-
-    // Add an HTML preview snippet (formatted) so we can use it when displaying all posts
-    preview(
-      htmlFormatter({
-        length: 300,
-        maxBlocks: 1
-      }),
-      {
-        attribute: 'previewHtml'
-      }
-    ),
-    posts,
-    videos,
-    relativeImages
-  ],
+  remarkPlugins: [posts, videos, relativeImages],
   rehypePlugins: [
     slugPlugin,
     [

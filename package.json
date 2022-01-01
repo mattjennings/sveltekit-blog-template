@@ -9,35 +9,36 @@
 		"format": "prettier --write ."
 	},
 	"devDependencies": {
-		"@sveltejs/adapter-static": "^1.0.0-next.18",
-		"@sveltejs/kit": "^1.0.0-next.164",
-		"@tailwindcss/typography": "^0.4.1",
-		"autoprefixer": "^10.2.6",
-		"cssnano": "^5.0.5",
-		"eslint": "^7.22.0",
+		"@sveltejs/adapter-static": "^1.0.0-next.24",
+		"@sveltejs/kit": "^1.0.0-next.211",
+		"@tailwindcss/typography": "^0.5.0",
+		"autoprefixer": "^10.4.1",
+		"cssnano": "^5.0.14",
+		"eslint": "^7.32.0",
 		"eslint-config-prettier": "^8.3.0",
-		"eslint-plugin-svelte3": "^3.2.0",
+		"eslint-plugin-svelte3": "^3.2.1",
 		"mdsvex": "^0.9.8",
 		"mdsvex-relative-images": "^0.0.3",
-		"postcss": "^8.3.0",
+		"postcss": "^8.4.5",
 		"postcss-focus-visible": "^5.0.0",
-		"postcss-load-config": "^3.0.1",
+		"postcss-load-config": "^3.1.0",
 		"prettier": "~2.2.1",
-		"prettier-plugin-svelte": "^2.3.0",
+		"prettier-plugin-svelte": "^2.5.1",
 		"rehype-autolink-headings": "^5.1.0",
 		"rehype-slug": "^4.0.1",
-		"remark-preview": "^1.0.1",
 		"remark-reading-time": "^1.0.1",
-		"svelte": "^3.38.2",
-		"svelte-preprocess": "^4.7.3",
-		"tailwindcss": "^2.2.9",
-		"unist-util-visit": "^3.1.0"		
+		"svelte": "^3.44.3",
+		"svelte-preprocess": "^4.10.1",
+		"tailwindcss": "^3.0.8",
+		"unist-util-visit": "^3.1.0"
 	},
 	"type": "module",
 	"dependencies": {
 		"clsx": "^1.1.1",
-		"date-fns": "^2.22.1",
+		"date-fns": "^2.28.0",
 		"focus-visible": "^5.2.0",
-		"heroicons-svelte": "^0.0.1"
+		"heroicons-svelte": "^0.0.1",
+		"node-html-parser": "^5.2.0",
+		"reading-time": "^1.5.0"
 	}
 }

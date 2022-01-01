@@ -1,13 +1,24 @@
 <script context="module">
-  import { getPosts } from '$lib/get-posts'
+  /**
+   * Create a mapping of slug -> Svelte component
+   */
+  const postComponentsBySlug = Object.entries(import.meta.globEager('/posts/**/*.md')).reduce(
+    (posts, [, post]) => ({
+      ...posts,
+      [post.metadata.slug]: post.default
+    }),
+    {}
+  )
 
   /**
    * @type {import('@sveltejs/kit').Load}
    */
-  export async function load({ page: { params } }) {
+  export async function load({ params, fetch }) {
     const { slug } = params
 
-    const post = getPosts().find((post) => slug === post.metadata.slug)
+    const post = await fetch('/posts.json')
+      .then((res) => res.json())
+      .then((posts) => posts.find((post) => slug === post.slug))
 
     if (!post) {
       return {
@@ -18,10 +29,10 @@
 
     return {
       props: {
-        ...post.metadata,
-        next: post.next?.metadata,
-        previous: post.previous?.metadata,
-        component: post.component
+        ...post,
+
+        // the component for the post
+        component: postComponentsBySlug[slug]
       }
     }
   }
@@ -77,8 +88,10 @@
   <div>
     <time datetime={new Date(date).toISOString()}>{format(new Date(date), 'MMMM d, yyyy')}</time>
     •
-    <span>{readingTime.text}</span>
+    <span>{readingTime}</span>
   </div>
+
+  <!-- render the post -->
   <svelte:component this={component} />
 </article>
 

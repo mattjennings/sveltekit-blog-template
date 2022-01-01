@@ -1,21 +1,19 @@
 <script context="module">
-  import { getPosts } from '$lib/get-posts'
-
   export const prerender = true
 
-  export const load = async () => {
+  export const load = async ({ fetch }) => {
     return {
       props: {
-        posts: getPosts().map(post => post.metadata)
+        posts: await fetch('/posts.json').then((res) => res.json())
       }
     }
   }
 </script>
 
 <script>
-  import ButtonLink from '$lib/components/ButtonLink.svelte';
-  import { name } from '$lib/info.js';
-  import { format } from 'date-fns';
+  import ButtonLink from '$lib/components/ButtonLink.svelte'
+  import { name } from '$lib/info.js'
+  import { format } from 'date-fns'
 
   export let posts
 </script>
@@ -34,9 +32,9 @@
           </h1>
           <time>{format(new Date(post.date), 'MMMM d, yyyy')}</time>
           •
-          <span>{post.readingTime.text}</span>
+          <span>{post.readingTime}</span>
         </div>
-        <div>{@html post.previewHtml}</div>
+        <div>{@html post.preview.html}</div>
         <div class="flex justify-end w-full">
           <ButtonLink href={`/posts/${post.slug}`}>Read More</ButtonLink>
         </div>

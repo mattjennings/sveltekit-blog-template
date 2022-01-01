@@ -239,7 +239,7 @@ const xml = (
           <description>A blog built with SvelteKit about tech and stuff!</description>
           <link>${website}/posts/${post.slug}/</link>
           <pubDate>${new Date(post.date)}</pubDate>
-          <content:encoded>${post.previewHtml} 
+          <content:encoded>${post.preview.html} 
             <div style="margin-top: 50px; font-style: italic;">
               <strong>
                 <a href="${website}/posts/${post.slug}">

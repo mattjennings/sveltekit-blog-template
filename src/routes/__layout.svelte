@@ -2,7 +2,8 @@
   import '../app.css'
   import '../prism.css'
   import 'focus-visible'
-  import { MoonIcon, SunIcon } from 'heroicons-svelte/solid'
+  import MoonIcon from 'heroicons-svelte/solid/MoonIcon.svelte'
+  import SunIcon from 'heroicons-svelte/solid/SunIcon.svelte'
   import { browser } from '$app/env'
   import { name } from '$lib/info'
 
