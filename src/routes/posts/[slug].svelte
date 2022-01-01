@@ -1,11 +1,11 @@
 <script context="module">
   /**
-   * Create a mapping of slug -> Svelte component
+   * Mapping of slug -> Svelte component
    */
   const postsBySlug = Object.entries(import.meta.globEager('/posts/**/*.md')).reduce(
     (posts, [, post]) => ({
       ...posts,
-      [post.metadata.slug]: post.default // the svelte component
+      [post.metadata.slug]: post.default
     }),
     {}
   )

@@ -22,6 +22,7 @@ specifiers:
   prettier: ~2.2.1
   prettier-plugin-svelte: ^2.5.1
   reading-time: ^1.5.0
+  reading-time-estimator: ^1.4.26
   rehype-autolink-headings: ^5.1.0
   rehype-slug: ^4.0.1
   remark-reading-time: ^1.0.1
@@ -37,6 +38,7 @@ dependencies:
   heroicons-svelte: 0.0.1_svelte@3.44.3
   node-html-parser: 5.2.0
   reading-time: 1.5.0
+  reading-time-estimator: 1.4.26
 
 devDependencies:
   '@sveltejs/adapter-static': 1.0.0-next.24
@@ -2004,6 +2006,10 @@ packages:
     dependencies:
       picomatch: 2.3.0
     dev: true
+
+  /reading-time-estimator/1.4.26:
+    resolution: {integrity: sha512-etf48xPr7GochVf9u+SJtVeZJnPMNBq47sKmGHSfZkGpIdj8NAMBWG4SZkQ0pqwWvFPJEhjvcaZ9v5n5l1e31A==}
+    dev: false
 
   /reading-time/1.5.0:
     resolution: {integrity: sha512-onYyVhBNr4CmAxFsKS7bz+uTLRakypIe4R+5A824vBSkQy/hB3fZepoVEf8OVAxzLvK+H/jm9TzpI3ETSm64Kg==}

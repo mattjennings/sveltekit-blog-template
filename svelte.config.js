@@ -26,7 +26,7 @@ const config = {
     vite: {
       server: {
         fs: {
-          allow: ['./posts']
+          allow: ['./']
         }
       }
     }

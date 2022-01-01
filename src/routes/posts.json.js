@@ -1,16 +1,9 @@
 import { parse } from 'node-html-parser'
 import readingTime from 'reading-time'
 
-/**
- * Gets all posts and adds extra metadata that we'll use when showing posts
- */
 const posts = Object.entries(import.meta.globEager('/posts/**/*.md'))
-  // get the post data
-  .map(([, post]) => post)
-  // sort by date
-  .sort((a, b) => new Date(b.metadata.date).getTime() - new Date(a.metadata.date).getTime())
   // add extra metadata to the posts
-  .map((post) => {
+  .map(([, post]) => {
     const parsedHtml = parse(post.default.render().html)
     // get the first HTML element of the post to use as a preview
     // (adjust this selector if you want a longer preview)
@@ -29,6 +22,8 @@ const posts = Object.entries(import.meta.globEager('/posts/**/*.md'))
       readingTime: readingTime(parsedHtml.structuredText).text
     }
   })
+  // sort by date
+  .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
   // add references to the next/previous post
   .map((post, index, allPosts) => ({
     ...post,
@@ -41,9 +36,9 @@ const posts = Object.entries(import.meta.globEager('/posts/**/*.md'))
  */
 export async function get({ url: { searchParams } }) {
   const limit = searchParams.get('limit') ? parseInt(searchParams.get('limit')) : undefined
-  const page = searchParams.get('page') ? parseInt(searchParams.get('page')) : undefined
+  const page = searchParams.get('page') ? parseInt(searchParams.get('page')) : 1
 
-  if (page && limit) {
+  if (limit) {
     return {
       body: JSON.stringify(posts.slice((page - 1) * limit, page * limit))
     }
