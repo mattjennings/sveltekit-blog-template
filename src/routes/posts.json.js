@@ -5,21 +5,23 @@ import readingTime from 'reading-time'
  * Gets all posts and adds extra metadata that we'll use when showing posts
  */
 const posts = Object.entries(import.meta.globEager('/posts/**/*.md'))
-  // get mdsvex metadata, add preview and reading time
-  .map(([, post]) => {
-    // get the HTML output of the post
+  // get the post data
+  .map(([, post]) => post)
+  // sort by date
+  .sort((a, b) => new Date(b.metadata.date).getTime() - new Date(a.metadata.date).getTime())
+  // add extra metadata to the posts
+  .map((post) => {
     const parsedHtml = parse(post.default.render().html)
-
-    // get the first html element to use as the preview.
+    // get the first HTML element of the post to use as a preview
+    // (adjust this selector if you want a longer preview)
     const preview = parsedHtml.querySelector('> *')
 
     return {
       ...post.metadata,
-      preview: {
-        // this will be rendered as the preview for the post
-        html: preview.toString(),
 
-        // a text-only version of the preview, used for SEO
+      preview: {
+        html: preview.toString(),
+        // text-only preview (i.e no html elements), used for SEO
         text: preview.structuredText
       },
 
@@ -27,19 +29,12 @@ const posts = Object.entries(import.meta.globEager('/posts/**/*.md'))
       readingTime: readingTime(parsedHtml.structuredText).text
     }
   })
-  // sort by date
-  .sort((a, b) => (new Date(a.date).getTime() < new Date(b.date).getTime() ? 1 : -1))
-  // now that it's sorted, add next/previous post data to each post
-  .map((post, index, array) => {
-    const next = array[index - 1]
-    const previous = array[index + 1]
-
-    return {
-      ...post,
-      next,
-      previous
-    }
-  })
+  // add references to the next/previous post
+  .map((post, index, allPosts) => ({
+    ...post,
+    next: allPosts[index - 1],
+    previous: allPosts[index + 1]
+  }))
 
 /**
  * @type {import('@sveltejs/kit').RequestHandler}

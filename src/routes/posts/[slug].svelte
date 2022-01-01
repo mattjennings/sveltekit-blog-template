@@ -2,10 +2,10 @@
   /**
    * Create a mapping of slug -> Svelte component
    */
-  const postComponentsBySlug = Object.entries(import.meta.globEager('/posts/**/*.md')).reduce(
+  const postsBySlug = Object.entries(import.meta.globEager('/posts/**/*.md')).reduce(
     (posts, [, post]) => ({
       ...posts,
-      [post.metadata.slug]: post.default
+      [post.metadata.slug]: post.default // the svelte component
     }),
     {}
   )
@@ -32,7 +32,7 @@
         ...post,
 
         // the component for the post
-        component: postComponentsBySlug[slug]
+        component: postsBySlug[slug]
       }
     }
   }
