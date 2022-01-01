@@ -9,7 +9,7 @@ export default {
   smartypants: {
     dashes: 'oldschool'
   },
-  remarkPlugins: [posts, videos, relativeImages],
+  remarkPlugins: [videos, relativeImages],
   rehypePlugins: [
     slugPlugin,
     [
@@ -19,25 +19,6 @@ export default {
       }
     ]
   ]
-}
-
-/**
- * Add slug to metadata and convert `date` timezone to UTC
- */
-function posts() {
-  return (_, file) => {
-    const parsed = path.parse(file.filename)
-    const slug =
-      parsed.name === 'index' ? path.parse(file.filename).dir.split('/').pop() : parsed.name
-
-    file.data.fm = {
-      ...file.data.fm,
-      slug,
-
-      // remove timezone from parsed date
-      date: file.data.fm.date ? new Date(file.data.fm.date).toLocaleDateString() : undefined
-    }
-  }
 }
 
 /**

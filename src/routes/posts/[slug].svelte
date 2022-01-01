@@ -1,24 +1,12 @@
 <script context="module">
   /**
-   * Mapping of slug -> Svelte component
-   */
-  const postsBySlug = Object.entries(import.meta.globEager('/posts/**/*.md')).reduce(
-    (posts, [, post]) => ({
-      ...posts,
-      [post.metadata.slug]: post.default
-    }),
-    {}
-  )
-
-  /**
    * @type {import('@sveltejs/kit').Load}
    */
   export async function load({ params, fetch }) {
     const { slug } = params
 
-    const post = await fetch('/posts.json')
-      .then((res) => res.json())
-      .then((posts) => posts.find((post) => slug === post.slug))
+    const posts = await fetch('/posts.json').then((res) => res.json())
+    const post = posts.find((post) => slug === post.slug)
 
     if (!post) {
       return {
@@ -27,12 +15,15 @@
       }
     }
 
+    // get svelte component
+    const component = await import(`../../../posts/${post.filename}`)
+
     return {
       props: {
         ...post,
 
         // the component for the post
-        component: postsBySlug[slug]
+        component: component.default
       }
     }
   }
@@ -53,6 +44,7 @@
   export let slug
   export let next
   export let previous
+  export let toc
 
   // generated open-graph image for sharing on social media. Visit https://og-image.vercel.app/ to see more options.
   const ogImage = `https://og-image.vercel.app/**${encodeURIComponent(
@@ -83,7 +75,7 @@
   <meta name="twitter:image" content={ogImage} />
 </svelte:head>
 
-<article>
+<article class="relative">
   <h1 class="!mt-0 !mb-1">{title}</h1>
   <div>
     <time datetime={new Date(date).toISOString()}>{format(new Date(date), 'MMMM d, yyyy')}</time>
@@ -92,7 +84,23 @@
   </div>
 
   <!-- render the post -->
-  <svelte:component this={component} />
+  <div class="relative">
+    <svelte:component this={component} />
+    {#if toc.length}
+      <div class="absolute not-prose left-[100%]" aria-label="Table of Contents">
+        <div class="fixed ml-4 top-20 float-none">
+          <h2 class="!text-gray-800">Table of Contents</h2>
+          <ul class="mt-2 !pl-0">
+            {#each toc as section}
+              <li class="list-none !pl-0">
+                <a class="!no-underline" href={`#${section.id}`}>{section.title}</a>
+              </li>
+            {/each}
+          </ul>
+        </div>
+      </div>
+    {/if}
+  </div>
 </article>
 
 <div class="pt-12 flex justify-between">

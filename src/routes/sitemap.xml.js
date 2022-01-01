@@ -2,9 +2,8 @@
 // It's helpful for SEO but does require you to keep it updated to reflect the routes of your website.
 // It is OK to delete this file if you'd rather not bother with it.
 
+import { getPosts } from '$lib/get-posts'
 import { website } from '$lib/info'
-
-const posts = Object.entries(import.meta.globEager('/posts/**/*.md').map(([, post]) => post))
 
 // helper for vscode syntax highlighting
 const html = String.raw
@@ -35,7 +34,7 @@ export async function get() {
           <priority>1.0</priority>
         </url>
 
-        ${posts
+        ${getPosts()
           .map(
             (post) => html`<url>
               <loc>${website}/posts/${post.slug}</loc>
