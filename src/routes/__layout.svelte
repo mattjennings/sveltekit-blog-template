@@ -13,9 +13,11 @@
 <div class="flex flex-col min-h-screen">
   <div class="mx-auto flex flex-col flex-grow w-full max-w-4xl">
     <div class="flex h-16 px-4 py-2 justify-between items-center">
-      <h1 class="text-lg sm:text-2xl font-bold text-slate-500 dark:text-slate-400">
-        <a href="/">{name}</a>
-      </h1>
+      <h2 class="!text-transparent bg-clip-text bg-gradient-to-r from-violet-500 to-pink-500">
+        <a class="text-lg sm:text-2xl font-bold" href="/">
+          {name}
+        </a>
+      </h2>
       {#if browser}
         <button
           type="button"
@@ -37,7 +39,7 @@
           {#if prefersLight}
             <MoonIcon class="text-slate-500" />
           {:else}
-            <SunIcon class="text-yellow-100" />
+            <SunIcon class="text-slate-400" />
           {/if}
         </button>
       {/if}

@@ -24,7 +24,9 @@
     </div>
   </div>
   <div class="flex-1">{@html post.preview.html}</div>
-  <div class="flex justify-end w-full">
-    <ButtonLink href={`/posts/${post.slug}`}>Read More</ButtonLink>
-  </div>
+  <slot name="actions">
+    <div class="flex justify-end w-full">
+      <ButtonLink href={`/posts/${post.slug}`}>Read More</ButtonLink>
+    </div>
+  </slot>
 </div>

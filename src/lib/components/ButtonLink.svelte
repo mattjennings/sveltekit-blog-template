@@ -1,44 +1,68 @@
 <script>
+  import ArrowRightIcon from './ArrowRightIcon.svelte'
+
   export let href
-  export let isBack = false
+  export let raised = true
+  export let size = 'medium' // small, medium, or large
+
+  let className = ''
+
+  export { className as class }
 </script>
 
-<a
-  {...$$restProps}
-  {href}
-  class="block px-3 py-1 !text-slate-800 dark:!text-slate-200 dark:!text-opacity-90 bg-slate-300 dark:bg-slate-700 rounded-md !no-underline"
->
-  <div class="flex items-center space-x-2">
-    {#if isBack}
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        class="h-5 w-5"
-        viewBox="0 0 20 20"
-        fill="currentColor"
-      >
-        <path
-          fill-rule="evenodd"
-          d="M9.707 14.707a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 1.414L7.414 9H15a1 1 0 110 2H7.414l2.293 2.293a1 1 0 010 1.414z"
-          clip-rule="evenodd"
-        />
-      </svg>
-    {/if}
-    <span>
-      <slot />
-    </span>
-    {#if !isBack}
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        class="h-5 w-5"
-        viewBox="0 0 20 20"
-        fill="currentColor"
-      >
-        <path
-          fill-rule="evenodd"
-          d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z"
-          clip-rule="evenodd"
-        />
-      </svg>
-    {/if}
-  </div>
-</a>
+<div class="not-prose">
+  <a
+    {...$$restProps}
+    {href}
+    class={'block text-slate-800 dark:text-slate-200 dark:text-opacity-90 rounded-md no-underline ' +
+      className}
+    class:small={size === 'small'}
+    class:medium={size === 'medium'}
+    class:large={size === 'large'}
+    class:raised
+  >
+    <div class="flex items-center space-x-1">
+      <slot name="icon-start" />
+      <span>
+        <slot />
+      </span>
+      <slot name="icon-end">
+        <ArrowRightIcon class="h-5 w-5" />
+      </slot>
+    </div>
+  </a>
+</div>
+
+<style lang="postcss">
+  .small {
+    @apply text-sm font-medium;
+  }
+
+  .small.raised {
+    @apply px-2 py-1;
+  }
+
+  .medium {
+    @apply text-base;
+  }
+
+  .medium.raised {
+    @apply px-3 py-1;
+  }
+
+  .large {
+    @apply text-lg;
+  }
+
+  .large.raised {
+    @apply px-4 py-2;
+  }
+
+  .raised {
+    @apply bg-slate-300;
+  }
+
+  :global(.dark) .raised {
+    @apply bg-slate-700;
+  }
+</style>

@@ -10,7 +10,7 @@
 	},
 	"devDependencies": {
 		"@sveltejs/adapter-static": "^1.0.0-next.24",
-		"@sveltejs/kit": "^1.0.0-next.211",
+		"@sveltejs/kit": "^1.0.0-next.212",
 		"@tailwindcss/typography": "^0.5.0",
 		"autoprefixer": "^10.4.1",
 		"cssnano": "^5.0.14",
@@ -21,7 +21,7 @@
 		"mdsvex-relative-images": "^0.0.3",
 		"postcss": "^8.4.5",
 		"postcss-focus-visible": "^5.0.0",
-		"postcss-load-config": "^3.1.0",
+		"postcss-load-config": "^3.1.1",
 		"prettier": "~2.2.1",
 		"prettier-plugin-svelte": "^2.5.1",
 		"rehype-autolink-headings": "^5.1.0",
@@ -30,6 +30,7 @@
 		"svelte": "^3.44.3",
 		"svelte-preprocess": "^4.10.1",
 		"tailwindcss": "^3.0.8",
+		"typescript": "^4.5.4",
 		"unist-util-visit": "^3.1.0"
 	},
 	"type": "module",

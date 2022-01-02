@@ -19,16 +19,15 @@ export function getPosts({ page = 1, limit } = {}) {
 const posts = Object.entries(import.meta.globEager('/posts/**/*.md'))
   // add metadata to the posts
   .map(([filepath, post]) => {
-    // get name of file if my-post.md or name of folder if my-post/index.md
-    const entry = filepath.replace(/(\/index)?\.md/, '')
-
     return {
       ...post.metadata,
       component: post.default,
-      filename: entry.split('/posts/').pop(),
-      slug: entry.split('/').pop(),
+      slug: filepath
+        .replace(/(\/index)?\.md/, '') // remove /index.md or .md from file
+        .split('/')
+        .pop(),
 
-      // in routes/[slug].svlte, we need to hardcode whether or not the
+      // needed to do correct dynamic import in posts/[slug].svelte
       isFolder: filepath.endsWith('/index.md'),
 
       // remove timezone from parsed date

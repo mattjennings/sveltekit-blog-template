@@ -5,7 +5,7 @@
 /**
  * Used for the header of the page and in SEO
  */
-export const name = 'your name'
+export const name = 'SvelteKit Blog Template' // replace with your name
 
 /**
  * Used for SEO in /posts/[slug]

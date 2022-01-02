@@ -1,19 +1,10 @@
 <script context="module">
-  import { getPosts } from '$lib/get-posts'
-
-  // Create a mapping of slug -> posts
-  const postComponentsBySlug = getPosts().reduce((acc, post) => {
-    acc[post.slug] = post.component
-    return acc
-  }, {})
-
   /**
    * @type {import('@sveltejs/kit').Load}
    */
   export async function load({ params, fetch }) {
     const { slug } = params
 
-    // fetch post from endpoint instead of getPosts (see posts.json.js for explanation)
     const posts = await fetch('/posts.json').then((res) => res.json())
     const post = posts.find((post) => slug === post.slug)
 
@@ -24,10 +15,14 @@
       }
     }
 
+    const component = post.isFolder
+      ? await import(`../../../posts/${post.slug}/index.md`)
+      : await import(`../../../posts/${post.slug}.md`)
+
     return {
       props: {
         ...post,
-        component: postComponentsBySlug[slug]
+        component: component.default
       }
     }
   }
@@ -40,6 +35,8 @@
   import { name, website } from '$lib/info'
   import ToC from '$lib/components/ToC.svelte'
   import PostPreview from '$lib/components/PostPreview.svelte'
+  import ArrowLeftIcon from '$lib/components/ArrowLeftIcon.svelte'
+  import ArrowRightIcon from '$lib/components/ArrowRightIcon.svelte'
 
   export let component
 
@@ -105,7 +102,13 @@
 </article>
 
 <div class="pt-12 flex justify-between">
-  <ButtonLink isBack href={`/posts`}>Back to Posts</ButtonLink>
+  <ButtonLink href={`/posts`}>
+    <slot slot="icon-start">
+      <ArrowLeftIcon class="h-5 w-5" />
+    </slot>
+    Back to Posts
+    <slot slot="icon-end" />
+  </ButtonLink>
 </div>
 
 <!-- next/previous posts -->
@@ -124,7 +127,7 @@
     {/if}
     {#if next}
       <div class="flex flex-col">
-        <h6 class="not-prose post-preview-label">Next Post</h6>
+        <h6 class="not-prose post-preview-label flex justify-end">Next Post</h6>
         <div class="flex-1 post-preview">
           <PostPreview post={next} small />
         </div>
@@ -133,7 +136,7 @@
   </div>
 {/if}
 
-<style>
+<style lang="postcss">
   .post-preview {
     @apply flex p-4 border border-slate-300 rounded-lg;
   }
