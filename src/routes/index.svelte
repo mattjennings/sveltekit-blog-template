@@ -12,7 +12,6 @@
 
 <script>
   import ButtonLink from '$lib/components/ButtonLink.svelte'
-
   import PostPreview from '$lib/components/PostPreview.svelte'
   import { name } from '$lib/info.js'
 

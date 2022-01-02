@@ -3,10 +3,12 @@ import { parse } from 'node-html-parser'
 import readingTime from 'reading-time/lib/reading-time.js'
 
 /**
- * Gets all the posts. This should be used by endpoints only, as some metadata
- * requires being on the server to be processed.
+ * Gets all of the posts with added metadata .
  *
- * For getting posts from the client fetch from `/posts.json`
+ * This should only be used on the server, as some of the metadata we add requires
+ * being on node (see `posts` below).
+ *
+ * For getting posts from the client, fetch from the /posts.json endpoint instead
  */
 export function getPosts({ page = 1, limit } = {}) {
   if (limit) {
@@ -16,27 +18,32 @@ export function getPosts({ page = 1, limit } = {}) {
   return posts
 }
 
+// Get all posts and add metadata
 const posts = Object.entries(import.meta.globEager('/posts/**/*.md'))
-  // add metadata to the posts
   .map(([filepath, post]) => {
     return {
       ...post.metadata,
-      component: post.default,
+
+      // generate the slug from the file path
       slug: filepath
-        .replace(/(\/index)?\.md/, '') // remove /index.md or .md from file
+        .replace(/(\/index)?\.md/, '')
         .split('/')
         .pop(),
 
-      // needed to do correct dynamic import in posts/[slug].svelte
-      isFolder: filepath.endsWith('/index.md'),
+      // whether or not this file is `my-post.md` or `my-post/index.md`
+      // (needed to do correct dynamic import in posts/[slug].svelte)
+      isIndexFile: filepath.endsWith('/index.md'),
 
-      // remove timezone from parsed date
-      date: post.metadata.date ? new Date(post.metadata.date).toLocaleDateString() : undefined
+      // remove timezone from date
+      date: post.metadata.date ? new Date(post.metadata.date).toLocaleDateString() : undefined,
+
+      // the svelte component
+      component: post.default
     }
   })
   // parse HTML output for content metadata (preview, reading time, toc)
   .map((post) => {
-    // post.component.render() is not available on client, skip adding content metadata
+    // skip adding content metadata if on the browser, we cannot render html from component
     if (browser) {
       return post
     }

@@ -5,6 +5,7 @@
   export async function load({ params, fetch }) {
     const { slug } = params
 
+    // fetch posts from endpoint so that it includes all metadata (see posts.json.js for explanation)
     const posts = await fetch('/posts.json').then((res) => res.json())
     const post = posts.find((post) => slug === post.slug)
 
@@ -15,8 +16,9 @@
       }
     }
 
-    const component = post.isFolder
-      ? await import(`../../../posts/${post.slug}/index.md`)
+    const component = post.isIndexFile
+      ? // vite requires relative paths and explicit file extensions for dynamic imports
+        await import(`../../../posts/${post.slug}/index.md`)
       : await import(`../../../posts/${post.slug}.md`)
 
     return {
@@ -36,7 +38,6 @@
   import ToC from '$lib/components/ToC.svelte'
   import PostPreview from '$lib/components/PostPreview.svelte'
   import ArrowLeftIcon from '$lib/components/ArrowLeftIcon.svelte'
-  import ArrowRightIcon from '$lib/components/ArrowRightIcon.svelte'
 
   export let component
 

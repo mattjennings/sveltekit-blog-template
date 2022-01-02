@@ -5,13 +5,15 @@
 import { getPosts } from '$lib/get-posts'
 import { website } from '$lib/info'
 
-// helper for vscode syntax highlighting
-const xml = String.raw
+const postsUrl = `${website}/posts/`
 
 /**
  * @type {import('@sveltejs/kit').RequestHandler}
  */
 export async function get() {
+  // helper for vscode syntax highlighting
+  const xml = String.raw
+
   return {
     headers: {
       'Cache-Control': `max-age=0, s-max-age=600`,
@@ -37,7 +39,7 @@ export async function get() {
         ${getPosts()
           .map(
             (post) => xml`<url>
-              <loc>${website}/posts/${post.slug}</loc>
+              <loc>${postsUrl}${post.slug}</loc>
               <lastmod
                 >${
                   post.updated

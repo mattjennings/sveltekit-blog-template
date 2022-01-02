@@ -1,11 +1,9 @@
 import { getPosts } from '$lib/get-posts'
 
 /**
- * An endpoint for the getPosts() function. Some of the metadata we add into
- * posts use methods that are only available on the server (i.e node).
- *
- * You can use getPosts() directly if you wish, but if it runs client-side (the browser)
- * it will be missing some metadata.
+ * An endpoint for the getPosts() function. Some of the metadata that gets added
+ * is only available when run on the server (i.e node), so when we need to fetch
+ * posts client-side we'll do it through this endpoint.
  *
  * @type {import('@sveltejs/kit').RequestHandler}
  */
