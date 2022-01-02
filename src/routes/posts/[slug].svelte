@@ -31,8 +31,11 @@
 
 <script>
   import { format } from 'date-fns'
+  import { page } from '$app/stores'
   import ButtonLink from '$lib/components/ButtonLink.svelte'
   import { name, website } from '$lib/info'
+  import ToC from '$lib/components/ToC.svelte'
+  import PostPreview from '$lib/components/PostPreview.svelte'
 
   export let component
 
@@ -44,7 +47,6 @@
   export let slug
   export let next
   export let previous
-  export let toc
 
   // generated open-graph image for sharing on social media. Visit https://og-image.vercel.app/ to see more options.
   const ogImage = `https://og-image.vercel.app/**${encodeURIComponent(
@@ -76,7 +78,11 @@
 </svelte:head>
 
 <article class="relative">
-  <h1 class="!mt-0 !mb-2">{title}</h1>
+  <h1 class="!mt-0 !mb-2">
+    <a class="!font-medium" href={$page.url.pathname}>
+      {title}
+    </a>
+  </h1>
   <div class="opacity-70">
     <time datetime={new Date(date).toISOString()}>{format(new Date(date), 'MMMM d, yyyy')}</time>
     •
@@ -86,33 +92,57 @@
   <!-- render the post -->
   <div class="relative">
     <svelte:component this={component} />
-    {#if toc.length}
-      <div class="hidden xl:block absolute not-prose left-[100%]" aria-label="Table of Contents">
-        <div class="fixed z-10 px-4 py-2 ml-8 top-20">
-          <h2 class="uppercase text-slate-500/50 dark:text-slate-600 font-semibold text-sm">
-            Sections
-          </h2>
-
-          <ul class="mt-2 !pl-0">
-            {#each toc as section}
-              <li class="list-none my-2 !pl-0 text-base text-slate-500/75 dark:text-slate-500">
-                <a class="!no-underline" href={`#${section.id}`}>{section.title}</a>
-              </li>
-            {/each}
-          </ul>
-        </div>
+    <div class="hidden xl:block absolute not-prose left-[100%]" aria-label="Table of Contents">
+      <div class="fixed z-10 px-4 py-2 ml-8 top-[4.5rem]">
+        <ToC />
       </div>
-    {/if}
+    </div>
   </div>
 </article>
 
 <div class="pt-12 flex justify-between">
-  {#if previous}
-    <ButtonLink isBack href={`/posts/${previous.slug}`}>{previous.title}</ButtonLink>
-  {:else}
-    <div />
-  {/if}
-  {#if next}
-    <ButtonLink href={`/posts/${next.slug}`}>{next.title}</ButtonLink>
-  {/if}
+  <ButtonLink isBack href={`/posts`}>Back to Posts</ButtonLink>
 </div>
+
+<!-- next/previous posts -->
+{#if previous || next}
+  <hr />
+  <div class="grid gap-8 grid-cols-1 sm:grid-cols-2">
+    {#if previous}
+      <div class="flex flex-col">
+        <h6 class="not-prose post-preview-label">Previous Post</h6>
+        <div class="flex-1 post-preview">
+          <PostPreview post={previous} small />
+        </div>
+      </div>
+    {:else}
+      <div />
+    {/if}
+    {#if next}
+      <div class="flex flex-col">
+        <h6 class="not-prose post-preview-label">Next Post</h6>
+        <div class="flex-1 post-preview">
+          <PostPreview post={next} small />
+        </div>
+      </div>
+    {/if}
+  </div>
+{/if}
+
+<style>
+  .post-preview {
+    @apply flex p-4 border border-slate-300 rounded-lg;
+  }
+
+  .post-preview-label {
+    @apply mb-2 text-slate-500 uppercase text-base font-medium;
+  }
+
+  :global(.dark) .post-preview {
+    @apply border-slate-700;
+  }
+
+  :global(.dark) .post-preview-label {
+    @apply text-slate-400;
+  }
+</style>

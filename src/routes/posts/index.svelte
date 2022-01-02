@@ -11,9 +11,8 @@
 </script>
 
 <script>
-  import ButtonLink from '$lib/components/ButtonLink.svelte'
+  import PostPreview from '$lib/components/PostPreview.svelte'
   import { name } from '$lib/info.js'
-  import { format } from 'date-fns'
 
   export let posts
 </script>
@@ -26,18 +25,7 @@
   <div class="flex-grow divide-y divide-slate-300 dark:divide-slate-700">
     {#each posts as post}
       <div class="py-8 first:pt-0">
-        <div>
-          <h1 class="!mt-0 !mb-1">
-            <a href={`/posts/${post.slug}`}>{post.title}</a>
-          </h1>
-          <time>{format(new Date(post.date), 'MMMM d, yyyy')}</time>
-          •
-          <span>{post.readingTime}</span>
-        </div>
-        <div>{@html post.preview.html}</div>
-        <div class="flex justify-end w-full">
-          <ButtonLink href={`/posts/${post.slug}`}>Read More</ButtonLink>
-        </div>
+        <PostPreview {post} />
       </div>
     {/each}
   </div>

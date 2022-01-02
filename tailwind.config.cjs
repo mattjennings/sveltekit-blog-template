@@ -4,7 +4,6 @@ module.exports = {
   theme: {
     extend: {
       typography: ({ theme }) => {
-        console.log(theme('boxShadow'))
         return {
           DEFAULT: {
             css: {
@@ -86,7 +85,7 @@ module.exports = {
               },
               'pre, pre code': {
                 color: theme('colors.slate.200'),
-                backgroundColor: theme('colors.slate.900')
+                backgroundColor: theme('colors.slate.800')
               }
             }
           }

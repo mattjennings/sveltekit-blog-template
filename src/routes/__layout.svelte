@@ -37,7 +37,7 @@
           {#if prefersLight}
             <MoonIcon class="text-slate-500" />
           {:else}
-            <SunIcon class="text-yellow-500" />
+            <SunIcon class="text-yellow-100" />
           {/if}
         </button>
       {/if}

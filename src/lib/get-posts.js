@@ -39,13 +39,13 @@ const posts = Object.entries(import.meta.globEager('/posts/**/*.md'))
       },
 
       // get estimated reading time for the post
-      readingTime: readingTime(parsedHtml.structuredText).text,
+      readingTime: readingTime(parsedHtml.structuredText).text
 
-      // table of contents
-      toc: sections.map((section) => ({
-        id: section.id,
-        title: section.structuredText
-      }))
+      // // table of contents
+      // toc: sections.map((section) => ({
+      //   id: section.id,
+      //   title: section.structuredText
+      // }))
     }
   })
   // sort by date

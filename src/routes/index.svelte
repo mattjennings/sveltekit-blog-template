@@ -12,6 +12,7 @@
 
 <script>
   import ButtonLink from '$lib/components/ButtonLink.svelte'
+  import PostPreview from '$lib/components/PostPreview.svelte'
   import { name } from '$lib/info.js'
   import { format } from 'date-fns'
 
@@ -37,7 +38,7 @@
   <!-- recent posts -->
   <h2 class="flex flex-col">
     Recent Posts
-    <a class="text-xs ml-0.5 mt-1 opacity-75" href="/posts"
+    <a class="text-base ml-0.5 mt-1 opacity-75" href="/posts"
       >View All
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -53,21 +54,10 @@
       </svg>
     </a>
   </h2>
-  <div class="grid gap-4 grid-cols-1">
+  <div class="grid gap-4 grid-cols-1 sm:grid-cols-2">
     {#each recentPosts as post}
-      <div class="flex flex-col p-4 border border-slate-300 dark:border-slate-800 rounded-lg">
-        <div>
-          <h2 class="!mt-0 !mb-1">
-            <a href={`/posts/${post.slug}`}>{post.title}</a>
-          </h2>
-          <time>{format(new Date(post.date), 'MMMM d, yyyy')}</time>
-          •
-          <span>{post.readingTime}</span>
-        </div>
-        <div class="flex-1">{@html post.preview.html}</div>
-        <div class="flex justify-end w-full">
-          <ButtonLink href={`/posts/${post.slug}`}>Read More</ButtonLink>
-        </div>
+      <div class="flex p-4 border border-slate-300 dark:border-slate-700 rounded-lg">
+        <PostPreview {post} small />
       </div>
     {/each}
   </div>
