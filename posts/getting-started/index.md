@@ -1,6 +1,6 @@
 ---
 title: Getting Started
-date: 2021-09-10
+date: 2022-01-02
 ---
 
 Thanks for checking out my blog template. It's based on the blog I built for my own [website](https://mattjennings.io) and I hope this is a good starting point for you to start yours.
@@ -11,7 +11,7 @@ Let's go over a few quick things:
 
 - This template is configured to use the static adapter. If you intend to add SSR you will need to change it to something like `@sveltejs/adapter-node` or your preferred hosting adapter (vercel, netlify, etc).
 
-- This template was built using `@sveltejs/kit@1.0.0-next.123`. I'll keep it updated when I can, but be aware that there things might break since SvelteKit is still in beta.
+- This template was built using `@sveltejs/kit@1.0.0-next.212`. I'll keep it updated when I can, but be aware that there things might break since SvelteKit is still in beta.
 
 Now that that's out of the way, let's learn about how to make posts.
 
@@ -19,9 +19,10 @@ Now that that's out of the way, let's learn about how to make posts.
 
 ## Creating a Post
 
-All of your posts (including this one) are located in `/posts`. You can add a new post by creating a new folder with an index.md file.
+All of your posts (including this one) are located in `/posts`. You can add a new post by creating either a new `.md` file or a folder with an `index.md` file:
 
 ```
+/posts/my-first-post.md
 /posts/my-first-post/index.md
 ```
 
