@@ -76,8 +76,8 @@
 </svelte:head>
 
 <article class="relative">
-  <h1 class="!mt-0 !mb-1">{title}</h1>
-  <div>
+  <h1 class="!mt-0 !mb-2">{title}</h1>
+  <div class="opacity-70">
     <time datetime={new Date(date).toISOString()}>{format(new Date(date), 'MMMM d, yyyy')}</time>
     •
     <span>{readingTime}</span>
@@ -87,12 +87,15 @@
   <div class="relative">
     <svelte:component this={component} />
     {#if toc.length}
-      <div class="absolute not-prose left-[100%]" aria-label="Table of Contents">
-        <div class="fixed ml-4 top-20 float-none">
-          <h2 class="!text-gray-800">Table of Contents</h2>
+      <div class="hidden xl:block absolute not-prose left-[100%]" aria-label="Table of Contents">
+        <div class="fixed z-10 px-4 py-2 ml-8 top-20">
+          <h2 class="uppercase text-slate-500/50 dark:text-slate-600 font-semibold text-sm">
+            Sections
+          </h2>
+
           <ul class="mt-2 !pl-0">
             {#each toc as section}
-              <li class="list-none !pl-0">
+              <li class="list-none my-2 !pl-0 text-base text-slate-500/75 dark:text-slate-500">
                 <a class="!no-underline" href={`#${section.id}`}>{section.title}</a>
               </li>
             {/each}

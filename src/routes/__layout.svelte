@@ -13,7 +13,7 @@
 <div class="flex flex-col min-h-screen">
   <div class="mx-auto flex flex-col flex-grow w-full max-w-4xl">
     <div class="flex h-16 px-4 py-2 justify-between items-center">
-      <h1 class="text-lg sm:text-2xl font-bold text-gray-800 dark:text-white">
+      <h1 class="text-lg sm:text-2xl font-bold text-slate-500 dark:text-slate-400">
         <a href="/">{name}</a>
       </h1>
       {#if browser}
@@ -35,7 +35,7 @@
           }}
         >
           {#if prefersLight}
-            <MoonIcon class="text-gray-500" />
+            <MoonIcon class="text-slate-500" />
           {:else}
             <SunIcon class="text-yellow-500" />
           {/if}
@@ -43,7 +43,7 @@
       {/if}
     </div>
     <main
-      class="flex flex-col w-full flex-grow prose prose-sm sm:prose lg:prose-lg dark:prose-dark py-4 px-4"
+      class="prose prose-slate prose-sm sm:prose sm:prose-slate sm:prose-lg sm:max-w-none dark:prose-invert flex flex-col w-full flex-grow py-4 px-4"
     >
       <slot />
     </main>

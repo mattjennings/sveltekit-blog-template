@@ -24,8 +24,8 @@ const posts = Object.entries(import.meta.globEager('/posts/**/*.md'))
 
     const parsedHtml = parse(post.component.render().html)
 
-    // get all h1 tags to create table of contents
-    const sections = parsedHtml.querySelectorAll('h1')
+    // get all h2 tags to create table of contents
+    const sections = parsedHtml.querySelectorAll('h2')
 
     // get the first paragaph of the post to use for the preview
     const preview = parsedHtml.querySelector('p')

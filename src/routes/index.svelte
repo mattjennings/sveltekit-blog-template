@@ -55,7 +55,7 @@
   </h2>
   <div class="grid gap-4 grid-cols-1">
     {#each recentPosts as post}
-      <div class="flex flex-col p-4 border border-gray-300 dark:border-gray-800 rounded-lg">
+      <div class="flex flex-col p-4 border border-slate-300 dark:border-slate-800 rounded-lg">
         <div>
           <h2 class="!mt-0 !mb-1">
             <a href={`/posts/${post.slug}`}>{post.title}</a>

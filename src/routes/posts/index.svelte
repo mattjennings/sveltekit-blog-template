@@ -23,7 +23,7 @@
 </svelte:head>
 
 <div class="flex flex-col flex-grow">
-  <div class="flex-grow divide-y divide-gray-300 dark:divide-gray-700">
+  <div class="flex-grow divide-y divide-slate-300 dark:divide-slate-700">
     {#each posts as post}
       <div class="py-8 first:pt-0">
         <div>

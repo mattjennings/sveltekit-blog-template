@@ -15,7 +15,9 @@ Let's go over a few quick things:
 
 Now that that's out of the way, let's learn about how to make posts.
 
-# Creating a Post
+---
+
+## Creating a Post
 
 All of your posts (including this one) are located in `/posts`. You can add a new post by creating a new folder with an index.md file.
 
@@ -40,9 +42,11 @@ Each individual post is rendered at `src/routes/posts/[slug].svelte`. You can ac
 
 If you're unfamiliar with mdsvex, I would recommend [looking at the website](https://mdsvex.com/playground) to see what is all possible out of the box.
 
-# Theme
+---
 
-For code blocks, it uses a slightly modified Night Owl theme. You can change the theme by editing `src/prism.css`, or [replacing it with one of the many available themes](https://github.com/PrismJS/prism-themes/tree/master/themes).
+## Theme
+
+For code blocks it uses a slightly modified Night Owl theme. You can change the theme by editing `src/prism.css`, or [replacing it with one of the many available themes](https://github.com/PrismJS/prism-themes/tree/master/themes).
 
 ```javascript
 function helloWorld() {
@@ -50,34 +54,28 @@ function helloWorld() {
 }
 ```
 
-The styling for the rest of the markdown content is in `tailwind.config.cjs` using `@tailwindcss/typography`. You can read more about it [here](https://github.com/tailwindlabs/tailwindcss-typography).
+The styling for the rest of the markdown content is in `tailwind.config.cjs` using `@tailwindcss/typography`. You can read more about it [here](https://tailwindcss.com/docs/typography-plugin).
 
-# Plugins
+---
+
+## Plugins
 
 I've added some mdsvex plugins to support a few extra things (check out the `mdsvex.config.js` file).
 
-## Videos
+### Videos
 
 ![penguins](./penguins.mp4)
 
-## Relative Images and Videos
+### Relative Images and Videos
 
-The [mdsvex-relative-images](https://github.com/mattjennings/mdsvex-relative-images) plugin allows us to load images or videos using a relative URL. This is particularly nice for keeping images grouped with their post folder, rather than needing to put them in `/static`.
+The [mdsvex-relative-images](https://github.com/mattjennings/mdsvex-relative-images) plugin allows loading images or videos with a relative path. This is particularly nice for grouping images with the post under the same folder, rather than needing to put them all in `/static`.
 
 ```md
 ![penguins](./penguins.mp4)
 ```
 
-## Reading Time
+---
 
-[remark-reading-time](https://github.com/mattjennings/remark-reading-time) adds the estimated reading time to the post's frontmatter.
-
-## Preview
-
-[remark-preview](https://github.com/mattjennings/remark-preview) provides snippets for each post in their frontmatter. I have it configured so the `preview` frontmatter property contains plain-text (which we use for SEO), and `previewHtml` contains formatted HTML (which we use to preview to the user). Beware that the preview content does not run through mdsvex, so mdsvex-specific features and plugins will not work in preview (such as components, or relative images unfortunately).
-
-Feel free to look at the docs for remark-preview as there are a few ways you can customize it.
-
-# That's it!
+## That's it!
 
 I think I've covered most of the important stuff. If you have any questions, suggestions, or problems feel free to [open an issue](https://github.com/mattjennings/sveltekit-blog-template/issues).
