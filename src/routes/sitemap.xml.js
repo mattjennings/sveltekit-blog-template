@@ -6,7 +6,7 @@ import { getPosts } from '$lib/get-posts'
 import { website } from '$lib/info'
 
 // helper for vscode syntax highlighting
-const html = String.raw
+const xml = String.raw
 
 /**
  * @type {import('@sveltejs/kit').RequestHandler}
@@ -17,7 +17,7 @@ export async function get() {
       'Cache-Control': `max-age=0, s-max-age=600`,
       'Content-Type': 'application/xml'
     },
-    body: html`<?xml version="1.0" encoding="UTF-8" ?>
+    body: xml`<?xml version="1.0" encoding="UTF-8" ?>
       <urlset
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd"
@@ -36,12 +36,14 @@ export async function get() {
 
         ${getPosts()
           .map(
-            (post) => html`<url>
+            (post) => xml`<url>
               <loc>${website}/posts/${post.slug}</loc>
               <lastmod
-                >${post.updated
-                  ? new Date(post.updated).toISOString()
-                  : new Date(post.date).toISOString()}</lastmod
+                >${
+                  post.updated
+                    ? new Date(post.updated).toISOString()
+                    : new Date(post.date).toISOString()
+                }</lastmod
               >
               <changefreq>monthly</changefreq>
               <priority>1.0</priority>
