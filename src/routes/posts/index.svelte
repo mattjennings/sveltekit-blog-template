@@ -18,7 +18,7 @@
 </script>
 
 <svelte:head>
-  <title>{name}</title>
+  <title>{name} | Posts</title>
 </svelte:head>
 
 <div class="flex flex-col flex-grow">

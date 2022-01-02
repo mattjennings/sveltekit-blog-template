@@ -1,10 +1,19 @@
 <script context="module">
+  import { getPosts } from '$lib/get-posts'
+
+  // Create a mapping of slug -> posts
+  const postComponentsBySlug = getPosts().reduce((acc, post) => {
+    acc[post.slug] = post.component
+    return acc
+  }, {})
+
   /**
    * @type {import('@sveltejs/kit').Load}
    */
   export async function load({ params, fetch }) {
     const { slug } = params
 
+    // fetch post from endpoint instead of getPosts (see posts.json.js for explanation)
     const posts = await fetch('/posts.json').then((res) => res.json())
     const post = posts.find((post) => slug === post.slug)
 
@@ -15,15 +24,10 @@
       }
     }
 
-    // get svelte component
-    const component = await import(`../../../posts/${post.filename}`)
-
     return {
       props: {
         ...post,
-
-        // the component for the post
-        component: component.default
+        component: postComponentsBySlug[slug]
       }
     }
   }
