@@ -5,7 +5,7 @@
 import { getPosts } from '$lib/get-posts'
 import { website } from '$lib/info'
 
-const postsUrl = `${website}/posts/`
+const postsUrl = `${website}/posts`
 
 /**
  * @type {import('@sveltejs/kit').RequestHandler}

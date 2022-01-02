@@ -6,7 +6,7 @@ import { name, website } from '$lib/info'
 
 // update this to something more appropriate for your website
 const websiteDescription = `${name}'s blog`
-const postsUrl = `${website}/posts/`
+const postsUrl = `${website}/posts`
 
 /**
  * @type {import('@sveltejs/kit').RequestHandler}
