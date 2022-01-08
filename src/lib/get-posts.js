@@ -2,6 +2,11 @@ import { browser } from '$app/env'
 import { parse } from 'node-html-parser'
 import readingTime from 'reading-time/lib/reading-time.js'
 
+// we require some server-side APIs to parse all metadata
+if (browser) {
+  throw new Error(`get-posts.js should not be used on the browser, fetch from /posts.json instead`)
+}
+
 /**
  * Gets all of the posts with added metadata .
  *
@@ -43,11 +48,6 @@ const posts = Object.entries(import.meta.globEager('/posts/**/*.md'))
   })
   // parse HTML output for content metadata (preview, reading time, toc)
   .map((post) => {
-    // skip adding content metadata if on the browser, we cannot render html from component
-    if (browser) {
-      return post
-    }
-
     const parsedHtml = parse(post.component.render().html)
 
     // get the first paragaph of the post to use for the preview
