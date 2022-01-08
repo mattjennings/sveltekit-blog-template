@@ -103,6 +103,12 @@ The [mdsvex-relative-images](https://github.com/mattjennings/mdsvex-relative-ima
 
 ---
 
+## Deploying
+
+You can deploy this like you would any other SvelteKit project. I chose to use the static adapter by default so you can `npm run build` and serve the `public` folder on your host of choice. Feel free to change the adapter if you want.
+
+---
+
 ## That's it!
 
 I think I've covered most of the important stuff. If you have any questions, suggestions, or problems feel free to [open an issue](https://github.com/mattjennings/sveltekit-blog-template/issues).
