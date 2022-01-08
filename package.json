@@ -10,13 +10,13 @@
 	},
 	"devDependencies": {
 		"@sveltejs/adapter-static": "^1.0.0-next.24",
-		"@sveltejs/kit": "^1.0.0-next.212",
+		"@sveltejs/kit": "^1.0.0-next.218",
 		"@tailwindcss/typography": "^0.5.0",
-		"autoprefixer": "^10.4.1",
-		"cssnano": "^5.0.14",
+		"autoprefixer": "^10.4.2",
+		"cssnano": "^5.0.15",
 		"eslint": "^7.32.0",
 		"eslint-config-prettier": "^8.3.0",
-		"eslint-plugin-svelte3": "^3.2.1",
+		"eslint-plugin-svelte3": "^3.3.0",
 		"mdsvex": "^0.9.8",
 		"mdsvex-relative-images": "^0.0.3",
 		"postcss": "^8.4.5",
@@ -27,9 +27,9 @@
 		"rehype-autolink-headings": "^5.1.0",
 		"rehype-slug": "^4.0.1",
 		"remark-reading-time": "^1.0.1",
-		"svelte": "^3.44.3",
+		"svelte": "^3.45.0",
 		"svelte-preprocess": "^4.10.1",
-		"tailwindcss": "^3.0.8",
+		"tailwindcss": "^3.0.12",
 		"typescript": "^4.5.4",
 		"unist-util-visit": "^3.1.0"
 	},
@@ -41,6 +41,6 @@
 		"heroicons-svelte": "^0.0.1",
 		"node-html-parser": "^5.2.0",
 		"reading-time": "^1.5.0",
-		"reading-time-estimator": "^1.4.26"
+		"reading-time-estimator": "^1.4.33"
 	}
 }
