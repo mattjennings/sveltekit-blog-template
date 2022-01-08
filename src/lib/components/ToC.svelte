@@ -2,6 +2,7 @@
   import { page } from '$app/stores'
   import { onMount } from 'svelte'
 
+  export let allowedHeadings = ['h1', 'h2', 'h3', 'h4', 'h5', 'h6']
   export let activeHeading = null
 
   let scrollY
@@ -9,7 +10,8 @@
 
   function updateHeadings() {
     const nodes = [
-      ...document.querySelectorAll(`article :where(h2, h3, h4, h5, h6):not(#__sections)`)
+      // Exclude h1 as those should be reserved for the post title
+      ...document.querySelectorAll(`article :where(${allowedHeadings.join(', ')}):not(#__sections)`)
     ]
     const depths = nodes.map((node) => Number(node.nodeName[1]))
     const minDepth = Math.min(...depths)

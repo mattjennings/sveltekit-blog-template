@@ -13,7 +13,9 @@
 <div class="flex flex-col min-h-screen">
   <div class="mx-auto flex flex-col flex-grow w-full max-w-4xl">
     <div class="flex h-16 px-4 py-2 justify-between items-center">
-      <h2 class="!text-transparent bg-clip-text bg-gradient-to-r from-violet-500 to-pink-500">
+      <h2
+        class="!text-transparent bg-clip-text bg-gradient-to-r from-blue-500 to-teal-500 dark:from-violet-500 dark:to-pink-500"
+      >
         <a class="text-lg sm:text-2xl font-bold" href="/">
           {name}
         </a>
