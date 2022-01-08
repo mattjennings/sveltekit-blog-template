@@ -7,19 +7,19 @@
 }
 
 .prose img {
-  @apply rounded-md shadow-md;
+  @apply rounded-md shadow-md dark:shadow-slate-900;
 }
 
 .prose video {
-  @apply rounded-md shadow-md;
+  @apply rounded-md shadow-md dark:shadow-slate-900;
 }
 
-.prose {
-  max-width: none;
+.prose pre {
+  @apply shadow-md dark:shadow-slate-900;
 }
 
 hr {
-  @apply !border-gray-300 dark:!border-gray-700;
+  @apply !border-slate-300 dark:!border-slate-700;
 }
 
 button {

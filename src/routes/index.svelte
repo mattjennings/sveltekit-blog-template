@@ -1,23 +1,21 @@
 <script context="module">
-  import { getPosts } from '$lib/get-posts'
-
   export const prerender = true
 
-  export const load = async () => {
+  export const load = async ({ fetch }) => {
     return {
       props: {
-        posts: getPosts().map(post => post.metadata)
+        recentPosts: await fetch('/posts.json?limit=2').then((res) => res.json())
       }
     }
   }
 </script>
 
 <script>
-  import ButtonLink from '$lib/components/ButtonLink.svelte';
-  import { name } from '$lib/info.js';
-  import { format } from 'date-fns';
+  import ButtonLink from '$lib/components/ButtonLink.svelte'
+  import PostPreview from '$lib/components/PostPreview.svelte'
+  import { name } from '$lib/info.js'
 
-  export let posts
+  export let recentPosts
 </script>
 
 <svelte:head>
@@ -25,21 +23,34 @@
 </svelte:head>
 
 <div class="flex flex-col flex-grow">
-  <div class="flex-grow divide-y divide-gray-300 dark:divide-gray-700">
-    {#each posts as post}
-      <div class="py-8 first:pt-0">
-        <div>
-          <h1 class="!mt-0 !mb-1">
-            <a href={`/posts/${post.slug}`}>{post.title}</a>
-          </h1>
-          <time>{format(new Date(post.date), 'MMMM d, yyyy')}</time>
-          •
-          <span>{post.readingTime.text}</span>
-        </div>
-        <div>{@html post.previewHtml}</div>
-        <div class="flex justify-end w-full">
-          <ButtonLink href={`/posts/${post.slug}`}>Read More</ButtonLink>
-        </div>
+  <!-- replace with a bio about you, or something -->
+  <div class="flex items-center justify-center text-xl h-40">
+    <ButtonLink size="large" href="https://github.com/mattjennings/sveltekit-blog-template">
+      <slot slot="icon-start">
+        <svg
+          class="fill-black dark:fill-white h-6 w-6"
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 24 24"
+        >
+          <path
+            d="M10.9,2.1c-4.6,0.5-8.3,4.2-8.8,8.7c-0.5,4.7,2.2,8.9,6.3,10.5C8.7,21.4,9,21.2,9,20.8v-1.6c0,0-0.4,0.1-0.9,0.1 c-1.4,0-2-1.2-2.1-1.9c-0.1-0.4-0.3-0.7-0.6-1C5.1,16.3,5,16.3,5,16.2C5,16,5.3,16,5.4,16c0.6,0,1.1,0.7,1.3,1c0.5,0.8,1.1,1,1.4,1 c0.4,0,0.7-0.1,0.9-0.2c0.1-0.7,0.4-1.4,1-1.8c-2.3-0.5-4-1.8-4-4c0-1.1,0.5-2.2,1.2-3C7.1,8.8,7,8.3,7,7.6C7,7.2,7,6.6,7.3,6 c0,0,1.4,0,2.8,1.3C10.6,7.1,11.3,7,12,7s1.4,0.1,2,0.3C15.3,6,16.8,6,16.8,6C17,6.6,17,7.2,17,7.6c0,0.8-0.1,1.2-0.2,1.4 c0.7,0.8,1.2,1.8,1.2,3c0,2.2-1.7,3.5-4,4c0.6,0.5,1,1.4,1,2.3v2.6c0,0.3,0.3,0.6,0.7,0.5c3.7-1.5,6.3-5.1,6.3-9.3 C22,6.1,16.9,1.4,10.9,2.1z"
+          /></svg
+        >
+      </slot>
+      View on GitHub
+      <slot slot="icon-end" />
+    </ButtonLink>
+  </div>
+
+  <!-- recent posts -->
+  <h2 class="flex items-baseline gap-4 !mb-2">
+    Recent Posts
+    <ButtonLink href="/posts" size="small" raised={false} class="opacity-60">View All</ButtonLink>
+  </h2>
+  <div class="grid gap-4 grid-cols-1 sm:grid-cols-2">
+    {#each recentPosts as post}
+      <div class="flex p-4 border border-slate-300 dark:border-slate-700 rounded-lg">
+        <PostPreview {post} small />
       </div>
     {/each}
   </div>
