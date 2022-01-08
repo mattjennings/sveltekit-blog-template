@@ -11,7 +11,7 @@ Let's go over a few quick things:
 
 - This template is configured to use the static adapter. If you intend to add SSR you will need to change it to something like `@sveltejs/adapter-node` or your preferred hosting adapter (vercel, netlify, etc).
 
-- This template was built using `@sveltejs/kit@1.0.0-next.212`. I'll keep it updated when I can, but be aware that there things might break since SvelteKit is still in beta.
+- This template was built using `@sveltejs/kit@1.0.0-next.218`. I'll keep it updated when I can, but be aware that there things might break since SvelteKit is still in beta.
 
 Now that that's out of the way, let's learn about how to make posts.
 
