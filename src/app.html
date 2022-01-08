@@ -12,6 +12,8 @@
       ? Boolean(storageValue)
       : window?.matchMedia('(prefers-color-scheme: light)').matches
 
+    localStorage.setItem('prefersLight', prefersLight)
+
     // default to dark mode unless explicitly set preference to light
     if (prefersLight) {
       document.querySelector('html').classList.remove('dark')
