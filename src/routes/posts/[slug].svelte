@@ -91,9 +91,11 @@
     <span>{readingTime}</span>
   </div>
 
-  <!-- render the post -->
   <div class="relative">
+    <!-- render the post -->
     <svelte:component this={component} />
+
+    <!-- table of contents -->
     <div class="hidden xl:block absolute not-prose left-[100%]" aria-label="Table of Contents">
       <div class="fixed z-10 px-4 py-2 ml-8 top-[4.5rem]">
         <ToC />
