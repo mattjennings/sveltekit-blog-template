@@ -23,7 +23,15 @@ const config = {
       pages: 'public',
       assets: 'public'
     }),
+
+    // if you are not using the static adapter and
+    // you don't want prerendering, remove this section
+    prerender: {
+      entries: ['*', '/sitemap.xml', '/rss.xml']
+    },
+
     vite: {
+      // allows vite access to ./posts
       server: {
         fs: {
           allow: ['./']
