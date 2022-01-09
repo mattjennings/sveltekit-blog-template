@@ -35,10 +35,10 @@ export async function get() {
         (post) =>
           xml`
           <item>
-            <guid>${postsUrl}${post.slug}</guid>
+            <guid>${postsUrl}/${post.slug}</guid>
             <title>${post.title}</title>
             <description>${post.preview.text}</description>
-            <link>${postsUrl}${post.slug}</link>
+            <link>${postsUrl}/${post.slug}</link>
             <pubDate>${new Date(post.date).toUTCString()}</pubDate>
         </item>
       `

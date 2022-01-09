@@ -39,7 +39,7 @@ export async function get() {
         ${getPosts()
           .map(
             (post) => xml`<url>
-              <loc>${postsUrl}${post.slug}</loc>
+              <loc>${postsUrl}/${post.slug}</loc>
               <lastmod
                 >${
                   post.updated
