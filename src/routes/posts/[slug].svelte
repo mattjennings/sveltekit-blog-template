@@ -60,14 +60,14 @@
 
 <svelte:head>
   <title>{title}</title>
-  <meta name="description" content={preview} />
+  <meta name="description" content={preview.text} />
   <meta name="author" content={name} />
 
   <!-- Facebook Meta Tags -->
   <meta property="og:url" content={url} />
   <meta property="og:type" content="website" />
   <meta property="og:title" content={title} />
-  <meta property="og:description" content={preview} />
+  <meta property="og:description" content={preview.text} />
   <meta property="og:image" content={ogImage} />
 
   <!-- Twitter Meta Tags -->
@@ -75,7 +75,7 @@
   <meta property="twitter:domain" content={website} />
   <meta property="twitter:url" content={url} />
   <meta name="twitter:title" content={title} />
-  <meta name="twitter:description" content={preview} />
+  <meta name="twitter:description" content={preview.text} />
   <meta name="twitter:image" content={ogImage} />
 </svelte:head>
 
