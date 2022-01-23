@@ -31,7 +31,7 @@
 </script>
 
 <script>
-  import { format } from 'date-fns'
+  import { format, parseISO } from 'date-fns'
   import { page } from '$app/stores'
   import ButtonLink from '$lib/components/ButtonLink.svelte'
   import { name, website } from '$lib/info'
@@ -86,7 +86,9 @@
     </a>
   </h1>
   <div class="opacity-70">
-    <time datetime={new Date(date).toISOString()}>{format(new Date(date), 'MMMM d, yyyy')}</time>
+    <time datetime={new Date(parseISO(date)).toISOString()}
+      >{format(new Date(parseISO(date)), 'MMMM d, yyyy')}</time
+    >
     •
     <span>{readingTime}</span>
   </div>

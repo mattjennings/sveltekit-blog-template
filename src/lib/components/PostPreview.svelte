@@ -1,5 +1,5 @@
 <script>
-  import { format } from 'date-fns'
+  import { format, parseISO } from 'date-fns'
   import ButtonLink from './ButtonLink.svelte'
 
   export let post
@@ -18,7 +18,7 @@
       </h3>
     {/if}
     <div class="opacity-70">
-      <time>{format(new Date(post.date), 'MMMM d, yyyy')}</time>
+      <time>{format(new Date(parseISO(post.date)), 'MMMM d, yyyy')}</time>
       •
       <span>{post.readingTime}</span>
     </div>

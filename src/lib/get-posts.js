@@ -1,4 +1,5 @@
 import { browser } from '$app/env'
+import { format } from 'date-fns'
 import { parse } from 'node-html-parser'
 import readingTime from 'reading-time/lib/reading-time.js'
 
@@ -39,8 +40,8 @@ const posts = Object.entries(import.meta.globEager('/posts/**/*.md'))
       // (needed to do correct dynamic import in posts/[slug].svelte)
       isIndexFile: filepath.endsWith('/index.md'),
 
-      // remove timezone from date
-      date: post.metadata.date ? new Date(post.metadata.date).toLocaleDateString() : undefined,
+      // remove time/timezone data from date and keep it in ISO format
+      date: post.metadata.date ? format(new Date(post.metadata.date), 'yyyy-MM-dd') : undefined,
 
       // the svelte component
       component: post.default
