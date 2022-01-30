@@ -40,8 +40,14 @@ const posts = Object.entries(import.meta.globEager('/posts/**/*.md'))
       // (needed to do correct dynamic import in posts/[slug].svelte)
       isIndexFile: filepath.endsWith('/index.md'),
 
-      // remove time/timezone data from date and keep it in ISO format
-      date: post.metadata.date ? format(new Date(post.metadata.date), 'yyyy-MM-dd') : undefined,
+      // format date as yyyy-MM-dd
+      date: post.metadata.date
+        ? format(
+            // offset by timezone so that the date is correct
+            addTimezoneOffset(new Date(post.metadata.date)),
+            'yyyy-MM-dd'
+          )
+        : undefined,
 
       // the svelte component
       component: post.default
@@ -74,3 +80,8 @@ const posts = Object.entries(import.meta.globEager('/posts/**/*.md'))
     next: allPosts[index - 1],
     previous: allPosts[index + 1]
   }))
+
+function addTimezoneOffset(date) {
+  const offsetInMilliseconds = new Date().getTimezoneOffset() * 60 * 1000
+  return new Date(new Date(date).getTime() + offsetInMilliseconds)
+}
