@@ -50,7 +50,8 @@ const posts = Object.entries(import.meta.globEager('/posts/**/*.md'))
         : undefined,
 
       // the svelte component
-      component: post.default
+      component: post.default,
+      customPreview: post.metadata.preview
     }
   })
   // parse HTML output for content metadata (preview, reading time, toc)
@@ -58,7 +59,7 @@ const posts = Object.entries(import.meta.globEager('/posts/**/*.md'))
     const parsedHtml = parse(post.component.render().html)
 
     // get the first paragaph of the post to use for the preview
-    const preview = parsedHtml.querySelector('p')
+    const preview = post.customPreview? post.customPreview : parsedHtml.querySelector('p')
 
     return {
       ...post,
