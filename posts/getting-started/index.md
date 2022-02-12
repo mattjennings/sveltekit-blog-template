@@ -34,10 +34,13 @@ Make sure your posts have `title` and `date` properties in the frontmatter:
 ---
 title: My First Post
 date: 2021-07-09
+preview: This text will be used for the preview instead of the first paragraph 
 ---
 
 (your content here)
 ```
+
+The `preview` property is optional, in case you want to customize the preview text. If the property is added, but the text is left empty, the first paragraph is used automatically.
 
 ---
 
