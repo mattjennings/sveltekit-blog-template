@@ -58,7 +58,7 @@ const posts = Object.entries(import.meta.globEager('/posts/**/*.md'))
   .map((post) => {
     const parsedHtml = parse(post.component.render().html)
 
-    // get the first paragraph of the post to use for the preview
+    // Use the custom preview in the metadata, if availabe, or the first paragraph of the post for the preview
     const preview = post.customPreview? post.customPreview : parsedHtml.querySelector('p')
 
     return {
