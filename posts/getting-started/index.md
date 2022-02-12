@@ -28,7 +28,7 @@ You can add a new post by creating either a new `.md` file or a folder with an `
 /posts/my-first-post/index.md
 ```
 
-Make sure your posts have `title` and `date` properties in the frontmatter:
+Make sure your posts have `title` and `date` properties in the front matter:
 
 ```md
 ---
