@@ -28,16 +28,19 @@ You can add a new post by creating either a new `.md` file or a folder with an `
 /posts/my-first-post/index.md
 ```
 
-Make sure your posts have `title` and `date` properties in the frontmatter:
+Make sure your posts have `title` and `date` properties in the front matter:
 
 ```md
 ---
 title: My First Post
 date: 2021-07-09
+preview: This text will be used for the preview instead of the first paragraph 
 ---
 
 (your content here)
 ```
+
+The `preview` property is optional, in case you want to customize the preview text. If the property is added, but the text is left empty, the first paragraph is used automatically.
 
 ---
 
