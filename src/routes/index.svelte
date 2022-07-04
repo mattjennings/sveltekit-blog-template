@@ -1,15 +1,3 @@
-<script context="module">
-  export const prerender = true
-
-  export const load = async ({ fetch }) => {
-    return {
-      props: {
-        recentPosts: await fetch('/posts.json?limit=2').then((res) => res.json())
-      }
-    }
-  }
-</script>
-
 <script>
   import ButtonLink from '$lib/components/ButtonLink.svelte'
   import PostPreview from '$lib/components/PostPreview.svelte'

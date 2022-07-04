@@ -2,28 +2,23 @@
   /**
    * @type {import('@sveltejs/kit').Load}
    */
-  export async function load({ params, fetch }) {
-    const { slug } = params
-
-    // fetch posts from endpoint so that it includes all metadata (see posts.json.js for explanation)
-    const posts = await fetch('/posts.json').then((res) => res.json())
-    const post = posts.find((post) => slug === post.slug)
-
-    if (!post) {
+  export async function load({ props }) {
+    if (!props.post) {
       return {
         status: 404,
         error: 'Post not found'
       }
     }
 
-    const component = post.isIndexFile
+    // load the markdown file based on slug
+    const component = props.post.isIndexFile
       ? // vite requires relative paths and explicit file extensions for dynamic imports
-        await import(`../../../posts/${post.slug}/index.md`)
-      : await import(`../../../posts/${post.slug}.md`)
+        await import(`../../../posts/${props.post.slug}/index.md`)
+      : await import(`../../../posts/${props.post.slug}.md`)
 
     return {
       props: {
-        ...post,
+        post: props.post,
         component: component.default
       }
     }
@@ -40,15 +35,9 @@
   import ArrowLeftIcon from '$lib/components/ArrowLeftIcon.svelte'
 
   export let component
+  export let post
 
-  // metadata
-  export let title
-  export let date
-  export let preview
-  export let readingTime
-  export let slug
-  export let next
-  export let previous
+  const { title, date, preview, readingTime, slug, next, previous } = post
 
   // generated open-graph image for sharing on social media. Visit https://og-image.vercel.app/ to see more options.
   const ogImage = `https://og-image.vercel.app/**${encodeURIComponent(

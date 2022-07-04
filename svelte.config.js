@@ -6,6 +6,7 @@ import adapter from '@sveltejs/adapter-static'
 /** @type {import('@sveltejs/kit').Config} */
 const config = {
   extensions: ['.svelte', ...mdsvexConfig.extensions],
+
   // Consult https://github.com/sveltejs/svelte-preprocess
   // for more information about preprocessors
   preprocess: [
@@ -18,7 +19,6 @@ const config = {
   ],
 
   kit: {
-    target: '#svelte',
     adapter: adapter({
       pages: 'public',
       assets: 'public'
@@ -27,6 +27,7 @@ const config = {
     // if you are not using the static adapter and
     // you don't want prerendering, remove this section
     prerender: {
+      default: true,
       entries: ['*', '/sitemap.xml', '/rss.xml']
     },
 

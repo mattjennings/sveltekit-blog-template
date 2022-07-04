@@ -4,13 +4,17 @@
 	"scripts": {
 		"dev": "svelte-kit dev",
 		"build": "svelte-kit build",
+		"package": "svelte-kit package",
 		"preview": "svelte-kit preview",
+		"prepare": "svelte-kit sync",
+		"check": "svelte-check --tsconfig ./jsconfig.json",
+		"check:watch": "svelte-check --tsconfig ./jsconfig.json --watch",
 		"lint": "prettier --check . && eslint --ignore-path .gitignore .",
 		"format": "prettier --write ."
 	},
 	"devDependencies": {
-		"@sveltejs/adapter-static": "1.0.0-next.24",
-		"@sveltejs/kit": "1.0.0-next.218",
+		"@sveltejs/adapter-static": "1.0.0-next.34",
+		"@sveltejs/kit": "1.0.0-next.357",
 		"@tailwindcss/typography": "^0.5.0",
 		"autoprefixer": "^10.4.2",
 		"cssnano": "^5.0.15",

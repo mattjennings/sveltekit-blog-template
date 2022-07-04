@@ -5,7 +5,7 @@ import readingTime from 'reading-time/lib/reading-time.js'
 
 // we require some server-side APIs to parse all metadata
 if (browser) {
-  throw new Error(`get-posts.js should not be used on the browser, fetch from /posts.json instead`)
+  throw new Error(`getPosts() can only be used in an endpoint or page endpoint`)
 }
 
 /**
@@ -13,8 +13,6 @@ if (browser) {
  *
  * This should only be used on the server, as some of the metadata we add requires
  * being on node (see `posts` below).
- *
- * For getting posts from the client, fetch from the /posts.json endpoint instead
  */
 export function getPosts({ page = 1, limit } = {}) {
   if (limit) {
@@ -59,7 +57,7 @@ const posts = Object.entries(import.meta.globEager('/posts/**/*.md'))
     const parsedHtml = parse(post.component.render().html)
 
     // Use the custom preview in the metadata, if availabe, or the first paragraph of the post for the preview
-    const preview = post.customPreview? post.customPreview : parsedHtml.querySelector('p')
+    const preview = post.customPreview ? post.customPreview : parsedHtml.querySelector('p')
 
     return {
       ...post,
