@@ -25,15 +25,6 @@ const config = {
     prerender: {
       default: true,
       entries: ['*', '/sitemap.xml', '/rss.xml']
-    },
-
-    vite: {
-      // allows vite access to ./posts
-      server: {
-        fs: {
-          allow: ['./']
-        }
-      }
     }
   }
 }

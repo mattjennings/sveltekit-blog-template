@@ -11,7 +11,7 @@ Let's go over a few quick things:
 
 - This template is configured to use the auto adapter. For more information, see the [SvelteKit docs on adapters](https://kit.svelte.dev/docs/adapters).
 
-- This template was built using `@sveltejs/kit@1.0.0-next.357`. I'll keep it updated when I can, but be aware that there things might break since SvelteKit is still in beta.
+- This template was built using `@sveltejs/kit@1.0.0-next.414`. I'll keep it updated when I can, but be aware that there things might break since SvelteKit is still in beta.
 
 Now that that's out of the way, let's learn about how to make posts.
 
@@ -46,7 +46,15 @@ The `preview` property is optional, in case you want to customize the preview te
 
 ## Rendering Posts
 
-Each individual post is rendered at `src/routes/posts/[slug].svelte`. You'll notice it has a page endpoint to get the post metadata, and then a corresponding `load` function to dynamically import the markdown as a Svelte component.
+Each individual post is rendered at `src/routes/posts/[slug]`. You'll notice the route has 3 files:
+
+```
+-| +page.js
+-| +page.server.js
+-| +page.svelte
+```
+
+The metadata for the post is loaded in `+page.server.js`. It is then used in `+page.js` to dynamically import the post's markdown file as a Svelte component. After that, both the post metadata and its Svelte component are passed into `+page.svelte` to be rendered.
 
 There are some basic meta tags setup for SEO and social media sharing, including a generated open graph image (courtesy of [og-image.vercel.app](https://og-image.vercel.app)).
 
@@ -60,7 +68,7 @@ Feel free to customize this page as you see fit. I included some nice-to-haves l
 
 You can use `getPosts()` from `$lib/get-posts`. It will return all posts with options for pagination.
 
-Only use this in endpoints or page endpoints (as I've done in this template) -- if you try to use it on client-side code it will throw an error. This is because it uses some server-side APIs to parse the post metadata, but it also contains every post from the posts folder, so you don't want that being bundled with your client code anyways.
+Only use this server-side (`+server.js` or `+page.server.js`) as I've done in this template. If you try to use it on client-side code it will throw an error. This is because it uses some server-side APIs to parse the post metadata. It also is the data source for every post on your website, so you wouldn't want that being bundled with your client code anyways.
 
 ---
 

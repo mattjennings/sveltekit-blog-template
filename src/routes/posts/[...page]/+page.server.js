@@ -1,7 +1,8 @@
 import { getPosts } from '$lib/get-posts'
+import { redirect } from '@sveltejs/kit'
 
-/** @type {import('./__types/[...page]').RequestHandler} */
-export async function get({ params }) {
+/** @type {import('./$types').PageServerLoad} */
+export async function load({ params }) {
   let page = 1
   let limit = 10
 
@@ -22,19 +23,12 @@ export async function get({ params }) {
 
   // if page doesn't exist, direct to page 1
   if (posts.length == 0 && page > 1) {
-    return {
-      status: 302,
-      headers: {
-        location: `/posts`
-      }
-    }
+    throw redirect(302, '/posts')
   }
 
   return {
-    body: {
-      posts,
-      page,
-      limit
-    }
+    posts,
+    page,
+    limit
   }
 }

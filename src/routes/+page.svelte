@@ -3,7 +3,8 @@
   import PostPreview from '$lib/components/PostPreview.svelte'
   import { name } from '$lib/info.js'
 
-  export let recentPosts
+  /** @type {import('./$types').PageData} */
+  export let data
 </script>
 
 <svelte:head>
@@ -36,7 +37,7 @@
     <ButtonLink href="/posts" size="small" raised={false} class="opacity-60">View All</ButtonLink>
   </h2>
   <div class="grid gap-4 grid-cols-1 sm:grid-cols-2">
-    {#each recentPosts as post}
+    {#each data.recentPosts as post}
       <div class="flex p-4 border border-slate-300 dark:border-slate-700 rounded-lg">
         <PostPreview {post} small />
       </div>

@@ -5,7 +5,7 @@ import readingTime from 'reading-time/lib/reading-time.js'
 
 // we require some server-side APIs to parse all metadata
 if (browser) {
-  throw new Error(`getPosts() can only be used in an endpoint or page endpoint`)
+  throw new Error(`getPosts() can only be used server-side`)
 }
 
 /**
@@ -23,7 +23,7 @@ export function getPosts({ page = 1, limit } = {}) {
 }
 
 // Get all posts and add metadata
-const posts = Object.entries(import.meta.globEager('/posts/**/*.md'))
+const posts = Object.entries(import.meta.glob('/posts/**/*.md', { eager: true }))
   .map(([filepath, post]) => {
     return {
       ...post.metadata,
