@@ -1,6 +1,6 @@
 ---
 title: Getting Started
-date: 2022-07-04
+date: 2022-09-18
 ---
 
 Thanks for checking out my blog template. It's based on the blog I built for my own [website](https://mattjennings.io) and I hope this is a good starting point for you to start yours.
@@ -11,7 +11,7 @@ Let's go over a few quick things:
 
 - This template is configured to use the auto adapter. For more information, see the [SvelteKit docs on adapters](https://kit.svelte.dev/docs/adapters).
 
-- This template was built using `@sveltejs/kit@1.0.0-next.414`. I'll keep it updated when I can, but be aware that there things might break since SvelteKit is still in beta.
+- This template was built using `@sveltejs/kit@1.0.0-next.484`. I'll keep it updated when I can, but be aware that there things might break since SvelteKit is still in beta.
 
 Now that that's out of the way, let's learn about how to make posts.
 
@@ -66,9 +66,11 @@ Feel free to customize this page as you see fit. I included some nice-to-haves l
 
 ## Getting Posts
 
-You can use `getPosts()` from `$lib/get-posts`. It will return all posts with options for pagination.
+Your posts can be retrieved via `import { posts } from '$lib/data/posts'`. They are automatically sorted from newest to oldest and contain relevant metadata for each post.
 
-Only use this server-side (`+server.js` or `+page.server.js`) as I've done in this template. If you try to use it on client-side code it will throw an error. This is because it uses some server-side APIs to parse the post metadata. It also is the data source for every post on your website, so you wouldn't want that being bundled with your client code anyways.
+`$lib/data/posts` should only be imported in `*.server.js` files. It uses some APIs that only work server-side, so it will throw an error if you try to load it on client-side code. (It also is the data source for every post on your website, so you wouldn't want that being bundled with your client code anyways).
+
+If you wish to render an entire post, you will need to import the `.md` file directly (as done in `src/routes/posts/[slug]/+page.js`).
 
 ---
 
