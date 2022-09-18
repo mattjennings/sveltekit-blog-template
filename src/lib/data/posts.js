@@ -1,30 +1,19 @@
-import { browser } from '$app/env'
+import { browser } from '$app/environment'
 import { format } from 'date-fns'
 import { parse } from 'node-html-parser'
 import readingTime from 'reading-time/lib/reading-time.js'
 
 // we require some server-side APIs to parse all metadata
 if (browser) {
-  throw new Error(`getPosts() can only be used server-side`)
-}
-
-/**
- * Gets all of the posts with added metadata .
- *
- * This should only be used on the server, as some of the metadata we add requires
- * being on node (see `posts` below).
- */
-export function getPosts({ page = 1, limit } = {}) {
-  if (limit) {
-    return posts.slice((page - 1) * limit, page * limit)
-  }
-
-  return posts
+  throw new Error(`posts can only be imported server-side`)
 }
 
 // Get all posts and add metadata
-const posts = Object.entries(import.meta.glob('/posts/**/*.md', { eager: true }))
+export const posts = Object.entries(import.meta.glob('/posts/**/*.md', { eager: true }))
   .map(([filepath, post]) => {
+    const html = parse(post.default.render().html)
+    const preview = post.metadata.preview ? parse(post.metadata.preview) : html.querySelector('p')
+
     return {
       ...post.metadata,
 
@@ -47,28 +36,14 @@ const posts = Object.entries(import.meta.glob('/posts/**/*.md', { eager: true })
           )
         : undefined,
 
-      // the svelte component
-      component: post.default,
-      customPreview: post.metadata.preview
-    }
-  })
-  // parse HTML output for content metadata (preview, reading time, toc)
-  .map((post) => {
-    const parsedHtml = parse(post.component.render().html)
-
-    // Use the custom preview in the metadata, if availabe, or the first paragraph of the post for the preview
-    const preview = post.customPreview ? post.customPreview : parsedHtml.querySelector('p')
-
-    return {
-      ...post,
       preview: {
         html: preview.toString(),
         // text-only preview (i.e no html elements), used for SEO
-        text: preview.structuredText
+        text: preview.structuredText ?? preview.toString()
       },
 
       // get estimated reading time for the post
-      readingTime: readingTime(parsedHtml.structuredText).text
+      readingTime: readingTime(html.structuredText).text
     }
   })
   // sort by date

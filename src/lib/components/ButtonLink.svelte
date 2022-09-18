@@ -20,7 +20,7 @@
     class:medium={size === 'medium'}
     class:large={size === 'large'}
     class:raised
-    sveltekit:prefetch
+    data-sveltekit-prefetch
   >
     <div class="flex items-center space-x-1">
       <slot name="icon-start" />

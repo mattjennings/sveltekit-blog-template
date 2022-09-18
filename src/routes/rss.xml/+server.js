@@ -2,8 +2,10 @@
 // It is OK to delete this file if you don't want an RSS feed.
 // credit: https://scottspence.com/posts/make-an-rss-feed-with-sveltekit#add-posts-for-the-rss-feed
 
-import { getPosts } from '$lib/get-posts'
+import { posts } from '$lib/data/posts'
 import { name, website } from '$lib/info'
+
+export const prerender = true
 
 // update this to something more appropriate for your website
 const websiteDescription = `${name}'s blog`
@@ -17,8 +19,6 @@ export async function GET({ setHeaders }) {
     'Cache-Control': `max-age=0, s-max-age=600`,
     'Content-Type': 'application/xml'
   })
-
-  const posts = getPosts()
 
   const xml = `<rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
       <channel>
