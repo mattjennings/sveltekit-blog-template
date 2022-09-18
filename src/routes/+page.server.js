@@ -1,8 +1,9 @@
-import { getPosts } from '$lib/get-posts'
+import { posts } from '$lib/data/posts'
 
 /** @type {import('./$types').PageServerLoad} */
 export async function load() {
   return {
-    recentPosts: getPosts({ limit: 2 })
+    // eslint-disable-next-line no-unused-vars
+    recentPosts: posts.slice(0, 2)
   }
 }

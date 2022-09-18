@@ -4,7 +4,7 @@
   import 'focus-visible'
   import MoonIcon from 'heroicons-svelte/solid/MoonIcon.svelte'
   import SunIcon from 'heroicons-svelte/solid/SunIcon.svelte'
-  import { browser } from '$app/env'
+  import { browser } from '$app/environment'
   import { name } from '$lib/info'
 
   let prefersLight = browser ? Boolean(JSON.parse(localStorage.getItem('prefersLight'))) : false

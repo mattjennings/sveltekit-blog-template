@@ -1,6 +1,6 @@
 # ⚠️ Freeze until SvelteKit 1.0 ⚠️
 
-Due to the frequency of breaking changes to SvelteKit this template won't receive updates until 1.0 is out. It is currently working with v1.0.0-next.414. 
+Due to the frequency of breaking changes to SvelteKit this template won't receive updates until 1.0 is out. It is currently working with v1.0.0-next.484.
 
 # sveltekit-blog-template
 

@@ -2,9 +2,10 @@
 // It's helpful for SEO but does require you to keep it updated to reflect the routes of your website.
 // It is OK to delete this file if you'd rather not bother with it.
 
-import { getPosts } from '$lib/get-posts'
+import { posts } from '$lib/data/posts'
 import { website } from '$lib/info'
 
+export const prerender = true
 const postsUrl = `${website}/posts`
 
 /**
@@ -33,7 +34,7 @@ export async function GET({ setHeaders }) {
         <priority>1.0</priority>
       </url>
 
-      ${getPosts()
+      ${posts
         .map(
           (post) => `<url>
             <loc>${postsUrl}/${post.slug}</loc>

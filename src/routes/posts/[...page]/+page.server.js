@@ -1,5 +1,6 @@
-import { getPosts } from '$lib/get-posts'
 import { redirect } from '@sveltejs/kit'
+import { posts } from '$lib/data/posts'
+import { paginate } from '$lib/util'
 
 /** @type {import('./$types').PageServerLoad} */
 export async function load({ params }) {
@@ -19,15 +20,15 @@ export async function load({ params }) {
     }
   }
 
-  const posts = getPosts({ limit, page })
+  const postsForPage = paginate(posts, { limit, page })
 
   // if page doesn't exist, direct to page 1
-  if (posts.length == 0 && page > 1) {
+  if (postsForPage.length == 0 && page > 1) {
     throw redirect(302, '/posts')
   }
 
   return {
-    posts,
+    posts: postsForPage,
     page,
     limit
   }

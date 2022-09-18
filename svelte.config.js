@@ -23,7 +23,6 @@ const config = {
 
     // remove this if you don't want prerendering
     prerender: {
-      default: true,
       entries: ['*', '/sitemap.xml', '/rss.xml']
     }
   }
