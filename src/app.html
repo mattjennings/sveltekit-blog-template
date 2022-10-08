@@ -1,34 +1,49 @@
 <!DOCTYPE html>
-<html lang="en" class="dark">
+<html lang="en" class="dark relative h-full antialiased">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="icon" href="/favicon.png" />
     %sveltekit.head%
     <script>
-      const storageValue = JSON.parse(localStorage.getItem('prefersLight'))
-      const prefersLight = storageValue
-        ? Boolean(storageValue)
-        : window?.matchMedia('(prefers-color-scheme: light)').matches
+      let darkModeMediaQuery = window.matchMedia('(prefers-color-scheme: dark)')
 
-      localStorage.setItem('prefersLight', prefersLight)
+      updateMode()
+      darkModeMediaQuery.addEventListener('change', updateModeWithoutTransitions)
+      window.addEventListener('storage', updateModeWithoutTransitions)
 
-      // default to dark mode unless explicitly set preference to light
-      if (prefersLight) {
-        document.querySelector('html').classList.remove('dark')
+      function updateMode() {
+        let isSystemDarkMode = darkModeMediaQuery.matches
+        let isDarkMode =
+          window.localStorage.isDarkMode === 'true' ||
+          (!('isDarkMode' in window.localStorage) && isSystemDarkMode)
+
+        if (isDarkMode) {
+          document.documentElement.classList.add('dark')
+        } else {
+          document.documentElement.classList.remove('dark')
+        }
+
+        if (isDarkMode === isSystemDarkMode) {
+          delete window.localStorage.isDarkMode
+        }
+      }
+
+      function disableTransitionsTemporarily() {
+        document.documentElement.classList.add('[&_*]:!transition-none')
+        window.setTimeout(() => {
+          document.documentElement.classList.remove('[&_*]:!transition-none')
+        }, 0)
+      }
+
+      function updateModeWithoutTransitions() {
+        disableTransitionsTemporarily()
+        updateMode()
       }
     </script>
   </head>
 
-  <body class="relative transition-colors duration-100 bg-slate-100 dark:bg-slate-900">
-    <div
-      class="fixed inset-0 -z-50 dark:bg-gradient-to-br dark:from-slate-900 dark:to-slate-800"
-    ></div>
-    <div class="z-0">%sveltekit.body%</div>
-
-    <!-- this fixes a bug in chrome where animations trigger from unstyled to styled content on page load -->
-    <!-- https://stackoverflow.com/a/42969257/6342734 -->
-    <!-- prettier-ignore -->
-    <script> </script>
+  <body class="h-full bg-white dark:bg-zinc-900 text-zinc-600 dark:text-zinc-400">
+    <div>%sveltekit.body%</div>
   </body>
 </html>

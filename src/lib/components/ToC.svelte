@@ -1,6 +1,7 @@
 <script>
   import { page } from '$app/stores'
   import { onMount } from 'svelte'
+  import Card from './Card.svelte'
 
   export let allowedHeadings = ['h1', 'h2', 'h3', 'h4', 'h5', 'h6']
   export let activeHeading = null
@@ -10,7 +11,6 @@
 
   function updateHeadings() {
     const nodes = [
-      // Exclude h1 as those should be reserved for the post title
       ...document.querySelectorAll(`article :where(${allowedHeadings.join(', ')}):not(#__sections)`)
     ]
     const depths = nodes.map((node) => Number(node.nodeName[1]))
@@ -55,26 +55,33 @@
     if (scrollProgress > 0.999) {
       activeHeading = headings[headings.length - 1]
     }
+
+    if (!activeHeading) {
+      activeHeading = headings[0]
+    }
   }
 </script>
 
 <svelte:window on:scroll={setActiveHeading} />
 
-<h6 id="__sections" class="uppercase text-slate-400/75 dark:text-slate-600 font-bold text-sm">
-  Sections
-</h6>
-
-<ul class="mt-2 !pl-0">
-  {#each headings as heading}
-    <li
-      class="heading list-none my-2 !pl-0 text-base text-slate-400 hover:text-slate-900 dark:text-slate-500 hover:dark:text-slate-100 transition-colors"
-      class:active={activeHeading?.node === heading.node}
-      style={`--depth: ${heading.depth}`}
-    >
-      <a class="!no-underline" href={`#${heading.node.id}`}>{heading.title}</a>
-    </li>
-  {/each}
-</ul>
+<Card>
+  <slot slot="description">
+    <ul class="flex flex-col gap-2">
+      {#each headings as heading}
+        <li
+          class="pl-2 transition-colors border-teal-500 text-zinc-400 dark:text-zinc-600"
+          class:active={activeHeading?.node === heading.node}
+          style={`--depth: ${
+            // consider h1 and h2 at the same depth, as h1 will only be used for page title
+            Math.max(0, heading.depth - 1)
+          }`}
+        >
+          <a href={`#${heading.node.id}`}>{heading.title}</a>
+        </li>
+      {/each}
+    </ul>
+  </slot>
+</Card>
 
 <style lang="postcss">
   .heading {
@@ -82,7 +89,7 @@
   }
 
   .active {
-    @apply text-slate-900 font-medium;
+    @apply font-medium text-slate-900 border-l-2 -ml-0.5;
   }
 
   /* can't use dark: modifier in @apply */

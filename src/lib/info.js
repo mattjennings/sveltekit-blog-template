@@ -2,12 +2,17 @@
 // If you'd rather hardcode these values into your pages,
 // feel free to remove this file.
 
-/**
- * Used for the header of the page and in SEO
- */
-export const name = 'SvelteKit Blog Template' // replace with your name
+// name
+export const firstName = 'Jordan'
+export const lastName = 'Doe'
+export const name = `${firstName} ${lastName}`
 
-/**
- * Used for SEO in /posts/[slug]
- */
+export const avatar = 'https://api.lorem.space/image/face?w=250&h=250'
+// socials - replace with your usernames
+export const twitter = 'jordandoe'
+export const github = 'jordandoe'
+export const linkedin = 'jordandoe'
+export const instagram = 'jordandoe'
+
+// url of your website
 export const website = 'https://yourdomain.com'

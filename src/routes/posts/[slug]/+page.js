@@ -1,3 +1,6 @@
+import { page } from '$app/stores'
+import { get } from 'svelte/store'
+
 /**
  * Dynamically loads the svelte component for the post (only possible in +page.js)
  * and pass on the data from +page.server.js
@@ -12,7 +15,17 @@ export async function load({ data }) {
       await import(`../../../../posts/${data.post.slug}/index.md`)
     : await import(`../../../../posts/${data.post.slug}.md`)
 
+  let showBack = false
+
+  // this is a little hack to detect if the page has been navigated to
+  // from another page on the site. if so, show the back button.
+  try {
+    showBack = Boolean(get(page).url)
+    // eslint-disable-next-line no-empty
+  } catch (e) {}
+
   return {
+    showBack,
     post: data.post,
     component: component.default
   }

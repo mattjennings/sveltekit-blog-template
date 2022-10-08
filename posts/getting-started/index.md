@@ -15,8 +15,6 @@ Let's go over a few quick things:
 
 Now that that's out of the way, let's learn about how to make posts.
 
----
-
 ## Creating a Post
 
 All of your posts (including this one) are located in the `posts` folder. They are written in markdown and parsed with mdsvex. If you're unfamiliar with mdsvex, I would recommend [looking at the website](https://mdsvex.com/playground) to see what is all possible out of the box.
@@ -42,8 +40,6 @@ preview: This text will be used for the preview instead of the first paragraph
 
 The `preview` property is optional, in case you want to customize the preview text. If the property is added, but the text is left empty, the first paragraph is used automatically.
 
----
-
 ## Rendering Posts
 
 Each individual post is rendered at `src/routes/posts/[slug]`. You'll notice the route has 3 files:
@@ -62,8 +58,6 @@ There are some basic meta tags setup for SEO and social media sharing, including
 
 Feel free to customize this page as you see fit. I included some nice-to-haves like a table of contents and links to the next and/or previous posts.
 
----
-
 ## Getting Posts
 
 Your posts can be retrieved via `import { posts } from '$lib/data/posts'`. They are automatically sorted from newest to oldest and contain relevant metadata for each post.
@@ -71,8 +65,6 @@ Your posts can be retrieved via `import { posts } from '$lib/data/posts'`. They 
 `$lib/data/posts` should only be imported in `*.server.js` files. It uses some APIs that only work server-side, so it will throw an error if you try to load it on client-side code. (It also is the data source for every post on your website, so you wouldn't want that being bundled with your client code anyways).
 
 If you wish to render an entire post, you will need to import the `.md` file directly (as done in `src/routes/posts/[slug]/+page.js`).
-
----
 
 ## Theme
 
@@ -85,8 +77,6 @@ function helloWorld() {
   return 'Hello World'
 }
 ```
-
----
 
 ## Mdsvex Plugins
 
@@ -110,13 +100,9 @@ The [mdsvex-relative-images](https://github.com/mattjennings/mdsvex-relative-ima
 
 ![penguins](./penguins.mp4)
 
----
-
 ## Deploying
 
 You can deploy this like you would any other SvelteKit project. As mentioned earlier this uses the auto adapter, but you can change it to whatever you'd like.
-
----
 
 ## That's it!
 
