@@ -11,13 +11,11 @@ specifiers:
   eslint: ^7.32.0
   eslint-config-prettier: ^8.3.0
   eslint-plugin-svelte3: ^3.3.0
-  focus-visible: ^5.2.0
   heroicons-svelte: ^0.0.1
   mdsvex: ^0.9.8
   mdsvex-relative-images: ^0.0.3
   node-html-parser: ^5.2.0
   postcss: ^8.4.14
-  postcss-focus-visible: ^5.0.0
   postcss-load-config: ^4.0.1
   prettier: ~2.2.1
   prettier-plugin-svelte: ^2.5.1
@@ -36,7 +34,6 @@ specifiers:
 dependencies:
   clsx: 1.2.1
   date-fns: 2.29.1
-  focus-visible: 5.2.0
   heroicons-svelte: 0.0.1_qy6w2iv5hnh55blsjuu7uihyzm
   node-html-parser: 5.4.1
   reading-time: 1.5.0
@@ -54,7 +51,6 @@ devDependencies:
   mdsvex: 0.9.8_svelte@3.50.1
   mdsvex-relative-images: 0.0.3
   postcss: 8.4.16
-  postcss-focus-visible: 5.0.0
   postcss-load-config: 4.0.1_postcss@8.4.16
   prettier: 2.2.1
   prettier-plugin-svelte: 2.7.0_md4xaq4u4zjeostvf5ayunlw3i
@@ -1320,10 +1316,6 @@ packages:
     resolution: {integrity: sha512-0sQoMh9s0BYsm+12Huy/rkKxVu4R1+r96YX5cG44rHV0pQ6iC3Q+mkoMFaGWObMFYQxCVT+ssG1ksneA2MI9KQ==}
     dev: true
 
-  /focus-visible/5.2.0:
-    resolution: {integrity: sha512-Rwix9pBtC1Nuy5wysTmKy+UjbDJpIfg8eHjw0rjZ1mX4GNLz1Bmd16uDpI3Gk1i70Fgcs8Csg2lPm8HULFg9DQ==}
-    dev: false
-
   /formdata-polyfill/4.0.10:
     resolution: {integrity: sha512-buewHzMvYL29jdeQTVILecSaZKnt/RJWjoZCF5OW60Z67/GmSLBkOFM7qh1PI3zFNtJbaZL5eQu1vLfazOwj4g==}
     engines: {node: '>=12.20.0'}
@@ -1906,10 +1898,6 @@ packages:
     resolution: {integrity: sha512-LDJzPVEEEPR+y48z93A0Ed0yXb8pAByGWo/k5YYdYgpY2/2EsOsksJrq7lOHxryrVOn1ejG6oAp8ahvOIQD8sw==}
     dev: true
 
-  /picocolors/0.2.1:
-    resolution: {integrity: sha512-cMlDqaLEqfSaW8Z7N5Jw+lyIW869EzT73/F5lhtY9cLGoVxSXznfgfXMO0Z5K0o0Q2TkTXq+0KFsdnSe3jDViA==}
-    dev: true
-
   /picocolors/1.0.0:
     resolution: {integrity: sha512-1fygroTLlHu66zi26VoTDv8yRgm0Fccecssto+MhsZ0D/DGW2sm8E8AjW7NU5VVTRt5GxbeZ5qBuJr+HyLYkjQ==}
     dev: true
@@ -1992,13 +1980,6 @@ packages:
       postcss: ^8.2.15
     dependencies:
       postcss: 8.4.16
-    dev: true
-
-  /postcss-focus-visible/5.0.0:
-    resolution: {integrity: sha512-KWMjuX+6Mbt7BvD7L9YETXXx8pmNSlT881Zdebbi5zLKdRIM0FIlwG87i/RXiwTf5nGJdaHA1KKsE6gW+O719A==}
-    engines: {node: '>=10.0.0'}
-    dependencies:
-      postcss: 7.0.39
     dev: true
 
   /postcss-import/14.1.0_postcss@8.4.16:
@@ -2289,14 +2270,6 @@ packages:
 
   /postcss-value-parser/4.2.0:
     resolution: {integrity: sha512-1NNCs6uurfkVbeXG4S8JFT9t19m45ICnif8zWLd5oPSZ50QnwMfK+H3jv408d4jw/7Bttv5axS5IiHoLaVNHeQ==}
-    dev: true
-
-  /postcss/7.0.39:
-    resolution: {integrity: sha512-yioayjNbHn6z1/Bywyb2Y4s3yvDAeXGOyxqD+LnVOinq6Mdmd++SW2wUNVzavyyHxd6+DxzWGIuosg6P1Rj8uA==}
-    engines: {node: '>=6.0.0'}
-    dependencies:
-      picocolors: 0.2.1
-      source-map: 0.6.1
     dev: true
 
   /postcss/8.4.16:

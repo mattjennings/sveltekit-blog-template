@@ -47,19 +47,8 @@
   {/if}
 
   {#if $$slots.actions}
-    <div
-      aria-hidden="true"
-      class="relative z-10 flex items-center mt-4 text-sm font-medium text-teal-500"
-    >
+    <div aria-hidden="true" class="relative z-10 flex items-center mt-4">
       <slot name="actions" />
-      <svg viewBox="0 0 16 16" fill="none" aria-hidden="true" class="w-4 h-4 ml-1 stroke-current">
-        <path
-          d="M6.75 5.75 9.25 8l-2.5 2.25"
-          strokeWidth="1.5"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-        />
-      </svg>
     </div>
   {/if}
 </svelte:element>

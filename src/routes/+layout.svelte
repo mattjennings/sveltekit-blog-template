@@ -1,7 +1,6 @@
 <script>
   import '../app.css'
   import '../prism.css'
-  import 'focus-visible'
   import MoonIcon from 'heroicons-svelte/solid/MoonIcon.svelte'
   import SunIcon from 'heroicons-svelte/solid/SunIcon.svelte'
   import { browser } from '$app/environment'
@@ -20,7 +19,9 @@
 <div class="flex flex-col min-h-screen">
   <div class="flex flex-col flex-grow w-full px-4 py-2">
     <header class="flex items-center justify-between w-full max-w-6xl py-4 mx-auto">
-      <h2 class="gradient ">
+      <h2
+        class="!text-transparent bg-clip-text bg-gradient-to-r from-teal-500 to-teal-600 dark:to-teal-400"
+      >
         <a class="text-lg font-bold sm:text-2xl" href="/">
           {name}
         </a>

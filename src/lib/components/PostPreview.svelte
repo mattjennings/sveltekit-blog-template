@@ -1,6 +1,7 @@
 <script>
   import { format, parseISO } from 'date-fns'
   import Card from './Card.svelte'
+  import ArrowRightIcon from './ArrowRightIcon.svelte'
 
   export let post
 </script>
@@ -18,7 +19,12 @@
   <div slot="description" class="prose description dark:prose-invert">
     {@html post.preview.html}
   </div>
-  <div slot="actions">Read</div>
+  <div slot="actions">
+    <div class="flex items-center text-teal-500">
+      <span class="text-sm font-medium">Read</span>
+      <ArrowRightIcon class="w-4 h-4 ml-1" />
+    </div>
+  </div>
 </Card>
 
 <style>

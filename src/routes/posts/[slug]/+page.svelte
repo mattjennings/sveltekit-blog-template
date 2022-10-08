@@ -86,20 +86,22 @@
       </div>
     </article>
 
-    <!-- footer -->
+    <!-- bio -->
     <hr />
     <div class="py-8">
       <div class="grid gap-8">
         <div class="flex justify-center order-1 col-span-2 gap-6 md:order-2">
           <SocialLinks />
         </div>
-        <a href="/" class="flex-shrink-0 order-2 rounded-full md:order-1 md:col-span-2">
-          <img
-            src={avatar}
-            alt={name}
-            class="w-24 h-24 mx-auto rounded-full md:w-36 md:h-36 ring-2 ring-zinc-200 dark:ring-zinc-700"
-          />
-        </a>
+        <div class="flex justify-center order-2 md:order-1 md:col-span-2">
+          <a href="/" class="inline-block rounded-full">
+            <img
+              src={avatar}
+              alt={name}
+              class="w-24 h-24 mx-auto rounded-full md:w-36 md:h-36 ring-2 ring-zinc-200 dark:ring-zinc-700"
+            />
+          </a>
+        </div>
         <p class="order-3 text-base text-zinc-600 dark:text-zinc-400">
           {bio}
         </p>
