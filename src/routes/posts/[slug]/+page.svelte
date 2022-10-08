@@ -1,13 +1,15 @@
 <script>
   import { format, parseISO } from 'date-fns'
-
+  import { website, name, bio, avatar } from '$lib/info.js'
   import ToC from '$lib/components/ToC.svelte'
-  import { avatar, website, name } from '$lib/info.js'
   import ArrowLeftIcon from '$lib/components/ArrowLeftIcon.svelte'
+  import SocialLinks from '$lib/components/SocialLinks.svelte'
+  import { afterNavigate } from '$app/navigation'
 
   /** @type {import('./$types').PageData} */
   export let data
 
+  let showBack = false
   // generated open-graph image for sharing on social media.
   // see https://og-image.vercel.app/ for more options.
   const ogImage = `https://og-image.vercel.app/**${encodeURIComponent(
@@ -15,6 +17,11 @@
   )}**?theme=light&md=1&fontSize=100px&images=https%3A%2F%2Fassets.vercel.com%2Fimage%2Fupload%2Ffront%2Fassets%2Fdesign%2Fhyper-color-logo.svg`
 
   const url = `${website}/${data.post.slug}`
+
+  afterNavigate(({ from }) => {
+    // only show back button if we navigated from within the site
+    showBack = !!from
+  })
 </script>
 
 <svelte:head>
@@ -38,9 +45,9 @@
   <meta name="twitter:image" content={ogImage} />
 </svelte:head>
 
-<div class="relative flex gap-20 pt-8 flex-nowrap">
+<div class="relative flex gap-20 pt-8">
   <div class="relative lg:max-w-3xl xl:max-w-4xl max-w-none">
-    {#if data.showBack}
+    {#if showBack}
       <div class="xl:absolute -top-[0.5rem] -left-[4rem]">
         <button
           type="button"
@@ -56,7 +63,7 @@
         </button>
       </div>
     {/if}
-    <article>
+    <article class="overflow-x-hidden ">
       <header class="flex flex-col">
         <h1
           class="mt-6 text-4xl font-bold tracking-tight text-zinc-800 dark:text-zinc-100 sm:text-5xl"
@@ -74,22 +81,28 @@
       </header>
 
       <!-- render the post -->
-      <div class="overflow-x-hidden prose dark:prose-invert ">
+      <div class="prose dark:prose-invert ">
         <svelte:component this={data.component} />
       </div>
     </article>
 
     <!-- footer -->
     <hr />
-    <div class="py-16">
-      <div class="flex w-full gap-6 rounded-lg">
-        <a href="/" class="mx-auto rounded-full w-36 h-36">
+    <div class="py-8">
+      <div class="grid gap-8">
+        <div class="flex justify-center order-1 col-span-2 gap-6 md:order-2">
+          <SocialLinks />
+        </div>
+        <a href="/" class="flex-shrink-0 order-2 rounded-full md:order-1 md:col-span-2">
           <img
             src={avatar}
             alt={name}
-            class="rounded-full ring-2 ring-zinc-200 dark:ring-zinc-700"
+            class="w-24 h-24 mx-auto rounded-full md:w-36 md:h-36 ring-2 ring-zinc-200 dark:ring-zinc-700"
           />
         </a>
+        <p class="order-3 text-base text-zinc-600 dark:text-zinc-400">
+          {bio}
+        </p>
       </div>
     </div>
   </div>
