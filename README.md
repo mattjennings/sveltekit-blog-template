@@ -1,11 +1,23 @@
 # ⚠️ Freeze until SvelteKit 1.0 ⚠️
 
-Due to the frequency of breaking changes to SvelteKit this template won't receive updates until 1.0 is out. It is currently working with v1.0.0-next.484.
+Due to the frequency of breaking changes to SvelteKit this template won't receive updates until 1.0 is out. It is currently working with v1.0.0-next.511
 
-# sveltekit-blog-template
+# SvelteKit Blog Template
 
 A SvelteKit blog template built on mdsvex and tailwind.
 
 [Demo](https://sveltekit-blog-template.vercel.app)
 
 [![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/git/external?repository-url=https%3A%2F%2Fgithub.com%2Fmattjennings%2Fsveltekit-blog-template)
+
+# Credits
+
+- [pngwn](https://github.com/pngwn) for mdsvex and helping me with the `mdsvex-relative-images` plugin
+  - https://github.com/pngwn/MDsveX/discussions/246#discussioncomment-720947
+- Tailwind's ["Spotlight" blog template](https://spotlight.tailwindui.com/)
+  - Overall theme is heavily based on this template
+- All who have contributed!
+
+  <a href="https://github.com/mattjennings/sveltekit-blog-template/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=mattjennings/sveltekit-blog-template" />
+  </a>
