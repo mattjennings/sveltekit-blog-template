@@ -16,7 +16,16 @@
 </svelte:head>
 
 <div class="flex flex-col flex-grow">
-  <PostsList posts={data.posts} />
+  <header class="pt-4">
+    <h1 class="text-4xl font-bold tracking-tight sm:text-5xl">
+      Writing on tech, music, and whatever else I feel like
+    </h1>
+    <p class="mt-6">All of my written content collected in one place</p>
+  </header>
+
+  <div class="mt-16 sm:mt-20">
+    <PostsList posts={data.posts} />
+  </div>
 
   <!-- pagination -->
   <div class="flex items-center justify-between pt-16 pb-8">
