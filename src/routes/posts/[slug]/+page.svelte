@@ -113,7 +113,7 @@
   <!-- table of contents -->
   <div class="hidden lg:block">
     <aside class="sticky top-8 ml-[2rem] w-[14rem]" aria-label="Table of Contents">
-      <ToC />
+      <ToC post={data.post} />
     </aside>
   </div>
 </div>

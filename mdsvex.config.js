@@ -1,15 +1,33 @@
-import path from 'path'
 import { visit } from 'unist-util-visit'
 import autolinkHeadings from 'rehype-autolink-headings'
 import slugPlugin from 'rehype-slug'
 import relativeImages from 'mdsvex-relative-images'
+import headings from '@vcarl/remark-headings'
 
 export default {
   extensions: ['.svx', '.md'],
   smartypants: {
     dashes: 'oldschool'
   },
-  remarkPlugins: [videos, relativeImages],
+  remarkPlugins: [
+    videos,
+    relativeImages,
+    headings,
+
+    // forward remark data into mdsvex frontmatter
+    () => (tree, vfile) => {
+      vfile.data.fm ??= {}
+
+      vfile.data.fm.headings = vfile.data.headings.map((heading) => ({
+        ...heading,
+        // slugify heading.value
+        id: heading.value
+          .toLowerCase()
+          .replace(/\s/g, '-')
+          .replace(/[^a-z0-9-]/g, '')
+      }))
+    }
+  ],
   rehypePlugins: [
     slugPlugin,
     [
