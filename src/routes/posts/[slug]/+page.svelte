@@ -45,26 +45,23 @@
   <meta name="twitter:image" content={ogImage} />
 </svelte:head>
 
-<div class="relative flex lg:-mx-64">
-  <div class="relative w-[16rem] hidden lg:block">
+<div class="flex">
+  <div class="relative w-full max-w-2xl">
     {#if showBack}
-      <div class="absolute -top-[0.5rem] right-8">
-        <button
-          type="button"
-          on:click={() => {
-            window.history.back()
-          }}
-          aria-label="Go back to posts"
-          class="flex items-center justify-center w-10 h-10 mb-8 transition bg-white rounded-full shadow-md group shadow-zinc-800/5 ring-1 ring-zinc-900/5 dark:border dark:border-zinc-700/50 dark:bg-zinc-800 dark:ring-0 dark:focus-visible:ring-2 dark:ring-white/10 dark:hover:border-zinc-700 dark:hover:ring-white/20"
-        >
-          <ArrowLeftIcon
-            class="w-4 h-4 transition stroke-zinc-500 group-hover:stroke-zinc-700 dark:stroke-zinc-500 dark:group-hover:stroke-zinc-400"
-          />
-        </button>
-      </div>
+      <button
+        class="absolute items-center justify-center hidden w-10 h-10 mb-8 transition bg-white rounded-full shadow-md -top-1 -left-16 lg:flex group shadow-zinc-800/5 ring-1 ring-zinc-900/5 dark:border dark:border-zinc-700/50 dark:bg-zinc-800 dark:ring-0 dark:focus-visible:ring-2 dark:ring-white/10 dark:hover:border-zinc-700 dark:hover:ring-white/20"
+        type="button"
+        aria-label="Go back to posts"
+        on:click={() => {
+          window.history.back()
+        }}
+      >
+        <ArrowLeftIcon
+          class="w-4 h-4 transition stroke-zinc-500 group-hover:stroke-zinc-700 dark:stroke-zinc-500 dark:group-hover:stroke-zinc-400"
+        />
+      </button>
     {/if}
-  </div>
-  <div class="relative max-w-2xl mx-auto overflow-x-hidden">
+
     <article>
       <header class="flex flex-col">
         <h1
@@ -100,7 +97,7 @@
             <img
               src={avatar}
               alt={name}
-              class="w-24 h-24 mx-auto rounded-full md:w-36 md:h-36 ring-2 ring-zinc-200 dark:ring-zinc-700"
+              class="w-24 h-24 mx-auto rounded-full md:w-28 md:h-28 ring-2 ring-zinc-200 dark:ring-zinc-700"
             />
           </a>
         </div>
@@ -110,9 +107,10 @@
       </div>
     </div>
   </div>
+
   <!-- table of contents -->
-  <div class="hidden lg:block">
-    <aside class="sticky top-8 ml-[2rem] w-[14rem]" aria-label="Table of Contents">
+  <div class="hidden xl:block">
+    <aside class="sticky hidden w-48 ml-8 xl:block top-8" aria-label="Table of Contents">
       <ToC post={data.post} />
     </aside>
   </div>
