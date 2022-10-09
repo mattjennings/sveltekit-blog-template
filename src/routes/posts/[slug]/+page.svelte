@@ -45,7 +45,7 @@
   <meta name="twitter:image" content={ogImage} />
 </svelte:head>
 
-<div class="relative flex lg:pt-8 lg:-mx-64">
+<div class="relative flex lg:-mx-64">
   <div class="relative w-[16rem] hidden lg:block">
     {#if showBack}
       <div class="absolute -top-[0.5rem] right-8">
