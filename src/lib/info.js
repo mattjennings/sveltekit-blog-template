@@ -17,10 +17,10 @@ vehicula sapien vitae sagittis.
 `
 
 // socials - replace with your usernames
-export const twitter = 'jordandoe'
-export const github = 'jordandoe'
-export const linkedin = 'jordandoe'
-export const instagram = 'jordandoe'
+export const twitter = ''
+export const github = 'mattjennings/sveltekit-blog-template' // change this to be just your username
+export const linkedin = ''
+export const instagram = ''
 
 // url of your website
-export const website = 'https://yourdomain.com'
+export const website = 'https://sveltekit-blog-template.vercel.app'
