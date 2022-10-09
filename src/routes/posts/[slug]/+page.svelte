@@ -45,16 +45,16 @@
   <meta name="twitter:image" content={ogImage} />
 </svelte:head>
 
-<div class="relative flex gap-20 pt-8">
-  <div class="relative lg:max-w-3xl xl:max-w-4xl max-w-none">
+<div class="relative flex lg:pt-8 lg:-mx-64">
+  <div class="relative w-[16rem] hidden lg:block">
     {#if showBack}
-      <div class="xl:absolute -top-[0.5rem] -left-[4rem]">
+      <div class="absolute -top-[0.5rem] right-8">
         <button
           type="button"
           on:click={() => {
             window.history.back()
           }}
-          aria-label="Go back to articles"
+          aria-label="Go back to posts"
           class="flex items-center justify-center w-10 h-10 mb-8 transition bg-white rounded-full shadow-md group shadow-zinc-800/5 ring-1 ring-zinc-900/5 dark:border dark:border-zinc-700/50 dark:bg-zinc-800 dark:ring-0 dark:focus-visible:ring-2 dark:ring-white/10 dark:hover:border-zinc-700 dark:hover:ring-white/20"
         >
           <ArrowLeftIcon
@@ -63,7 +63,9 @@
         </button>
       </div>
     {/if}
-    <article class="overflow-x-hidden ">
+  </div>
+  <div class="relative max-w-2xl mx-auto overflow-x-hidden">
+    <article>
       <header class="flex flex-col">
         <h1
           class="mt-6 text-4xl font-bold tracking-tight text-zinc-800 dark:text-zinc-100 sm:text-5xl"
@@ -108,11 +110,10 @@
       </div>
     </div>
   </div>
-
   <!-- table of contents -->
-  <aside aria-label="Table of Contents" class="relative hidden overflow-x-hidden lg:block">
-    <div class="fixed w-[12rem]">
+  <div class="hidden lg:block">
+    <aside class="sticky top-8 ml-[2rem] w-[14rem]" aria-label="Table of Contents">
       <ToC />
-    </div>
-  </aside>
+    </aside>
+  </div>
 </div>

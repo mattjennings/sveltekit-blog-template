@@ -16,16 +16,16 @@
   }
 </script>
 
-<div class="flex flex-col min-h-screen">
+<div class="flex flex-col min-h-screen ">
   <div class="flex flex-col flex-grow w-full px-4 py-2">
-    <header class="flex items-center justify-between w-full max-w-6xl py-4 mx-auto">
-      <h2
-        class="!text-transparent bg-clip-text bg-gradient-to-r from-teal-500 to-teal-600 dark:to-teal-400"
+    <header class="flex items-center justify-between w-full max-w-2xl py-4 mx-auto">
+      <a
+        class="text-lg font-bold sm:text-2xl !text-transparent bg-clip-text bg-gradient-to-r from-teal-500 to-teal-600 dark:to-teal-400"
+        href="/"
       >
-        <a class="text-lg font-bold sm:text-2xl" href="/">
-          {name}
-        </a>
-      </h2>
+        {name}
+      </a>
+
       <button
         type="button"
         role="switch"
@@ -45,11 +45,11 @@
           }
         }}
       >
-        <MoonIcon class="hidden text-slate-500 dark:block" />
-        <SunIcon class="block text-slate-400 dark:hidden" />
+        <MoonIcon class="hidden text-zinc-500 dark:block" />
+        <SunIcon class="block text-zinc-400 dark:hidden" />
       </button>
     </header>
-    <main class="flex flex-col flex-grow w-full max-w-6xl mx-auto">
+    <main class="flex flex-col flex-grow w-full max-w-2xl mx-auto">
       <slot />
     </main>
   </div>
