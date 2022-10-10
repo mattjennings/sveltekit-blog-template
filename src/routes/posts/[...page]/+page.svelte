@@ -30,7 +30,7 @@
   <!-- pagination -->
   <div class="flex items-center justify-between pt-16 pb-8">
     {#if !isFirstPage}
-      <a href={`/posts/page/${data.page - 1}`}>
+      <a href={`/posts/page/${data.page - 1}`} data-sveltekit-prefetch>
         <ArrowLeftIcon class="w-4 h-4" />
         Previous
       </a>
@@ -39,7 +39,7 @@
     {/if}
 
     {#if hasNextPage}
-      <a href={`/posts/page/${data.page + 1}`}
+      <a href={`/posts/page/${data.page + 1}`} data-sveltekit-prefetch
         >Next
         <ArrowRightIcon class="w-4 h-4" />
       </a>

@@ -9,7 +9,6 @@
   /** @type {import('./$types').PageData} */
   export let data
 
-  let showBack = false
   // generated open-graph image for sharing on social media.
   // see https://og-image.vercel.app/ for more options.
   const ogImage = `https://og-image.vercel.app/**${encodeURIComponent(
@@ -18,9 +17,10 @@
 
   const url = `${website}/${data.post.slug}`
 
+  let showBackButton = false
   afterNavigate(({ from }) => {
     // only show back button if we navigated from within the site
-    showBack = !!from
+    showBackButton = !!from
   })
 </script>
 
@@ -47,7 +47,7 @@
 
 <div class="flex">
   <div class="relative w-full max-w-2xl">
-    {#if showBack}
+    {#if showBackButton}
       <button
         class="absolute items-center justify-center hidden w-10 h-10 mb-8 transition bg-white rounded-full shadow-md -top-1 -left-16 lg:flex group shadow-zinc-800/5 ring-1 ring-zinc-900/5 dark:border dark:border-zinc-700/50 dark:bg-zinc-800 dark:ring-0 dark:focus-visible:ring-2 dark:ring-white/10 dark:hover:border-zinc-700 dark:hover:ring-white/20"
         type="button"
