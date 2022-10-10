@@ -1,21 +1,19 @@
 ---
 title: Getting Started
-date: 2022-09-18
+date: 2022-10-09
 ---
 
 Thanks for checking out my blog template. It's based on the blog I built for my own [website](https://mattjennings.io) and I hope this is a good starting point for you to start yours.
 
 Let's go over a few quick things:
 
-- First things first, you should edit the `src/lib/info.js` file to contain your information. This will properly update the parts of the website that display your name and the SEO tags for your posts.
+- This template was built using `@sveltejs/kit@1.0.0-next.511`. I'll keep it updated when I can, but be aware that there things might break since SvelteKit is still in beta.
 
-- This template is configured to use the auto adapter. For more information, see the [SvelteKit docs on adapters](https://kit.svelte.dev/docs/adapters).
+- The theme of this blog is heavily borrowed from Tailwind's ["Spotlight" blog template](https://spotlight.tailwindui.com/). This is _not_ a port of that template, but the styling is pretty much the same.
 
-- This template was built using `@sveltejs/kit@1.0.0-next.484`. I'll keep it updated when I can, but be aware that there things might break since SvelteKit is still in beta.
+- You should edit the `src/lib/info.js` file to contain your information. This will properly update the parts of the website that display your name, social links, and SEO (meta tags) for your posts.
 
 Now that that's out of the way, let's learn about how to make posts.
-
----
 
 ## Creating a Post
 
@@ -42,8 +40,6 @@ preview: This text will be used for the preview instead of the first paragraph
 
 The `preview` property is optional, in case you want to customize the preview text. If the property is added, but the text is left empty, the first paragraph is used automatically.
 
----
-
 ## Rendering Posts
 
 Each individual post is rendered at `src/routes/posts/[slug]`. You'll notice the route has 3 files:
@@ -62,8 +58,6 @@ There are some basic meta tags setup for SEO and social media sharing, including
 
 Feel free to customize this page as you see fit. I included some nice-to-haves like a table of contents and links to the next and/or previous posts.
 
----
-
 ## Getting Posts
 
 Your posts can be retrieved via `import { posts } from '$lib/data/posts'`. They are automatically sorted from newest to oldest and contain relevant metadata for each post.
@@ -72,13 +66,11 @@ Your posts can be retrieved via `import { posts } from '$lib/data/posts'`. They 
 
 If you wish to render an entire post, you will need to import the `.md` file directly (as done in `src/routes/posts/[slug]/+page.js`).
 
----
-
 ## Theme
 
-Most of the site is themed using tailwind's [typography plugin](https://tailwindcss.com/docs/typography-plugin). You can the configuration for it in `tailwind.config.cjs`
+Most of the site is themed using Tailwind's [typography plugin](https://tailwindcss.com/docs/typography-plugin). You can the configuration for it in `tailwind.config.cjs`. As mentioned at the beginning of this post, the overall theme is taken from [Tailwind's "Spotlight"](https://spotlight.tailwindui.com/).
 
-For code blocks it uses a slightly modified Night Owl theme. You can change the theme by editing `src/prism.css`, or [replacing it with one of the many available themes](https://github.com/PrismJS/prism-themes/tree/master/themes).
+If you wish to change the theme of your code blocks, you can edit the `src/prism.css` file. Prism themes can be [found here](https://github.com/PrismJS/prism-themes/tree/master/themes).
 
 ```javascript
 function helloWorld() {
@@ -86,15 +78,13 @@ function helloWorld() {
 }
 ```
 
----
-
 ## Mdsvex Plugins
 
 I've added some mdsvex plugins to support a few extra things (check out the `mdsvex.config.js` file).
 
 ### Videos
 
-.mp4 and .webm videos are supported
+.mp4 and .webm videos are supported just like images.
 
 ```md
 ![my video](/videos/my-cool-video.mp4)
@@ -110,13 +100,11 @@ The [mdsvex-relative-images](https://github.com/mattjennings/mdsvex-relative-ima
 
 ![penguins](./penguins.mp4)
 
----
-
 ## Deploying
 
-You can deploy this like you would any other SvelteKit project. As mentioned earlier this uses the auto adapter, but you can change it to whatever you'd like.
+You can deploy this like you would any other SvelteKit project. It uses the auto adapter by default.
 
----
+[See the SvelteKit docs on adapters](https://kit.svelte.dev/docs/adapters)
 
 ## That's it!
 

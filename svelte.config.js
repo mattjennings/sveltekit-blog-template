@@ -10,12 +10,10 @@ const config = {
   // Consult https://github.com/sveltejs/svelte-preprocess
   // for more information about preprocessors
   preprocess: [
-    mdsvex(mdsvexConfig),
-    [
-      preprocess({
-        postcss: true
-      })
-    ]
+    preprocess({
+      postcss: true
+    }),
+    mdsvex(mdsvexConfig)
   ],
 
   kit: {

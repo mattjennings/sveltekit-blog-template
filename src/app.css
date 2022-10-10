@@ -1,40 +1,23 @@
-@tailwind base;
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import './prism.css';
+@import 'tailwindcss/utilities';
 
-@layer utilities {
-  .focus {
-    @apply outline-none focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 dark:focus-visible:ring-blue-300;
+@layer base {
+  body {
+    @apply text-zinc-600 dark:text-zinc-400;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply text-zinc-900 dark:text-zinc-200;
+  }
+
+  hr {
+    @apply border-zinc-100 dark:border-zinc-700/25;
   }
 }
-
-.prose img {
-  @apply rounded-md shadow-md dark:shadow-slate-900;
-}
-
-.prose video {
-  @apply rounded-md shadow-md dark:shadow-slate-900;
-}
-
-.prose pre {
-  @apply shadow-md dark:shadow-slate-900;
-}
-
-hr {
-  @apply !border-slate-300 dark:!border-slate-700;
-}
-
-button {
-  @apply rounded-md;
-  @apply focus;
-}
-
-a {
-  @apply rounded-sm;
-  @apply focus;
-}
-
-svg {
-  @apply outline-none focus:outline-none;
-}
-
-@tailwind components;
-@tailwind utilities;
