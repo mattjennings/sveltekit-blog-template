@@ -14,6 +14,9 @@ export async function load({ data }) {
 
   return {
     post: data.post,
-    component: component.default
+    component: component.default,
+    layout: {
+      fullWidth: true
+    }
   }
 }

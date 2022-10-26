@@ -17,11 +17,20 @@
 
   const url = `${website}/${data.post.slug}`
 
-  let showBackButton = false
+  // if we came from /posts, we will use history to go back to preserve
+  // posts pagination
+  let canGoBack = false
   afterNavigate(({ from }) => {
-    // only show back button if we navigated from within the site
-    showBackButton = !!from
+    if (from && from.url.pathname.startsWith('/posts')) {
+      canGoBack = true
+    }
   })
+
+  function goBack() {
+    if (canGoBack) {
+      history.back()
+    }
+  }
 </script>
 
 <svelte:head>
@@ -45,23 +54,25 @@
   <meta name="twitter:image" content={ogImage} />
 </svelte:head>
 
-<div class="flex">
-  <div class="relative w-full max-w-2xl">
-    {#if showBackButton}
-      <button
-        class="absolute items-center justify-center hidden w-10 h-10 mb-8 transition bg-white rounded-full shadow-md -top-1 -left-16 lg:flex group shadow-zinc-800/5 ring-1 ring-zinc-900/5 dark:border dark:border-zinc-700/50 dark:bg-zinc-800 dark:ring-0 dark:focus-visible:ring-2 dark:ring-white/10 dark:hover:border-zinc-700 dark:hover:ring-white/20"
-        type="button"
+<div class="root">
+  <div class="hidden lg:block pt-8">
+    <div class="sticky top-0 w-full flex justify-end pt-7 pr-8">
+      <svelte:element
+        this={canGoBack ? 'button' : 'a'}
+        class="items-center justify-center hidden w-10 h-10 mb-8 transition bg-white rounded-full shadow-md -top-1 -left-16 lg:flex group shadow-zinc-800/5 ring-1 ring-zinc-900/5 dark:border dark:border-zinc-700/50 dark:bg-zinc-800 dark:ring-0 dark:focus-visible:ring-2 dark:ring-white/10 dark:hover:border-zinc-700 dark:hover:ring-white/20"
+        href={canGoBack ? undefined : '/posts'}
         aria-label="Go back to posts"
-        on:click={() => {
-          window.history.back()
-        }}
+        on:click={goBack}
+        on:keydown={goBack}
       >
         <ArrowLeftIcon
           class="w-4 h-4 transition stroke-zinc-500 group-hover:stroke-zinc-700 dark:stroke-zinc-500 dark:group-hover:stroke-zinc-400"
         />
-      </button>
-    {/if}
+      </svelte:element>
+    </div>
+  </div>
 
+  <div class="w-full mx-auto overflow-x-hidden">
     <article>
       <header class="flex flex-col">
         <h1
@@ -109,9 +120,23 @@
   </div>
 
   <!-- table of contents -->
-  <div class="hidden xl:block">
+  <div class="hidden xl:block pt-10">
     <aside class="sticky hidden w-48 ml-8 xl:block top-8" aria-label="Table of Contents">
       <ToC post={data.post} />
     </aside>
   </div>
 </div>
+
+<style lang="postcss">
+  .root {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+
+  @media screen(lg) {
+    .root {
+      /* 42rem matches max-w-2xl */
+      grid-template-columns: 1fr 42rem 1fr;
+    }
+  }
+</style>

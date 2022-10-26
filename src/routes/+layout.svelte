@@ -5,6 +5,7 @@
   import SunIcon from 'heroicons-svelte/solid/SunIcon.svelte'
   import { browser } from '$app/environment'
   import { name } from '$lib/info'
+  import { page } from '$app/stores'
 
   let isDarkMode = browser ? Boolean(document.documentElement.classList.contains('dark')) : true
 
@@ -49,7 +50,10 @@
         <SunIcon class="block text-zinc-400 dark:hidden" />
       </button>
     </header>
-    <main class="flex flex-col flex-grow w-full max-w-2xl mx-auto ">
+    <main
+      class="flex flex-col flex-grow w-full mx-auto"
+      class:max-w-2xl={!$page.data.layout?.fullWidth}
+    >
       <slot />
     </main>
   </div>
