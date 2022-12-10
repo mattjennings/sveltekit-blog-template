@@ -42,7 +42,7 @@ The `preview` property is optional, in case you want to customize the preview te
 
 ## Rendering Posts
 
-Each individual post is rendered at `src/routes/posts/[slug]`. You'll notice the route has 3 files:
+Each individual post is rendered at `src/routes/post/[slug]`. You'll notice the route has 3 files:
 
 ```
 -| +page.js
@@ -64,7 +64,7 @@ Your posts can be retrieved via `import { posts } from '$lib/data/posts'`. They 
 
 `$lib/data/posts` should only be imported in `*.server.js` files. It uses some APIs that only work server-side, so it will throw an error if you try to load it on client-side code. (It also is the data source for every post on your website, so you wouldn't want that being bundled with your client code anyways).
 
-If you wish to render an entire post, you will need to import the `.md` file directly (as done in `src/routes/posts/[slug]/+page.js`).
+If you wish to render an entire post, you will need to import the `.md` file directly (as done in `src/routes/post/[slug]/+page.js`).
 
 ## Theme
 
