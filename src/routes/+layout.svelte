@@ -32,7 +32,7 @@
         role="switch"
         aria-label="Toggle Dark Mode"
         aria-checked={isDarkMode}
-        class="w-4 h-4 sm:h-8 sm:w-8 sm:p-1"
+        class="w-5 h-5 sm:h-8 sm:w-8 sm:p-1"
         on:click={() => {
           isDarkMode = !isDarkMode
           localStorage.setItem('isDarkMode', isDarkMode.toString())
