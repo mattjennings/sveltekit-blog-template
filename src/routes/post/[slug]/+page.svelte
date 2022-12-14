@@ -1,10 +1,10 @@
 <script>
-  import { format, parseISO } from 'date-fns'
   import { website, name, bio, avatar } from '$lib/info.js'
   import ToC from '$lib/components/ToC.svelte'
   import ArrowLeftIcon from '$lib/components/ArrowLeftIcon.svelte'
   import SocialLinks from '$lib/components/SocialLinks.svelte'
   import { afterNavigate } from '$app/navigation'
+  import PostDate from '$lib/components/PostDate.svelte'
 
   /** @type {import('./$types').PageData} */
   export let data
@@ -54,9 +54,9 @@
   <meta name="twitter:image" content={ogImage} />
 </svelte:head>
 
-<div class="root">
+<div class="root max-w-2xl mx-auto lg:max-w-none">
   <div class="hidden lg:block pt-8">
-    <div class="sticky top-0 w-full flex justify-end pt-7 pr-8">
+    <div class="sticky top-0 w-full flex justify-end pt-11 pr-8">
       <svelte:element
         this={canGoBack ? 'button' : 'a'}
         class="items-center justify-center hidden w-10 h-10 mb-8 transition bg-white rounded-full shadow-md -top-1 -left-16 lg:flex group shadow-zinc-800/5 ring-1 ring-zinc-900/5 dark:border dark:border-zinc-700/50 dark:bg-zinc-800 dark:ring-0 dark:focus-visible:ring-2 dark:ring-white/10 dark:hover:border-zinc-700 dark:hover:ring-white/20"
@@ -80,14 +80,7 @@
         >
           {data.post.title}
         </h1>
-        <div class="flex items-center order-first text-base text-zinc-400 dark:text-zinc-500">
-          <span class="h-4 w-0.5 rounded-full bg-zinc-200 dark:bg-zinc-500" />
-          <time dateTime={data.post.date}>
-            <span class="ml-3">{format(new Date(parseISO(data.post.date)), 'MMMM d, yyyy')}</span>
-          </time>
-          <span class="mx-2">•</span>
-          <span>{data.post.readingTime}</span>
-        </div>
+        <PostDate class="text-sm sm:text-base" post={data.post} decorate collapsed />
       </header>
 
       <!-- render the post -->

@@ -1,13 +1,13 @@
 ---
 title: Getting Started
-date: 2022-10-09
+date: 2022-12-14
 ---
 
 Thanks for checking out my blog template. It's based on the blog I built for my own [website](https://mattjennings.io) and I hope this is a good starting point for you to start yours.
 
 Let's go over a few quick things:
 
-- This template was built using `@sveltejs/kit@1.0.0-next.511`. I'll keep it updated when I can, but be aware that there things might break since SvelteKit is still in beta.
+- This template was built with `@sveltejs/kit@1.0.0`
 
 - The theme of this blog is heavily borrowed from Tailwind's ["Spotlight" blog template](https://spotlight.tailwindui.com/). This is _not_ a port of that template, but the styling is pretty much the same.
 
@@ -38,11 +38,11 @@ preview: This text will be used for the preview instead of the first paragraph
 (your content here)
 ```
 
-The `preview` property is optional, in case you want to customize the preview text. If the property is added, but the text is left empty, the first paragraph is used automatically.
+The `preview` property is optional, in case you want to customize the preview text. If not provided, the first paragaph of your post will be used instead.
 
 ## Rendering Posts
 
-Each individual post is rendered at `src/routes/posts/[slug]`. You'll notice the route has 3 files:
+Each individual post is rendered at `src/routes/post/[slug]`. You'll notice the route has 3 files:
 
 ```
 -| +page.js
@@ -50,7 +50,7 @@ Each individual post is rendered at `src/routes/posts/[slug]`. You'll notice the
 -| +page.svelte
 ```
 
-The metadata for the post is loaded in `+page.server.js`. It is then used in `+page.js` to dynamically import the post's markdown file as a Svelte component. After that, both the post metadata and its Svelte component are passed into `+page.svelte` to be rendered.
+The metadata for the post is loaded in `+page.server.js`. It is then used in `+page.js` to import the post's markdown file. After that, both the post and its metadata are passed into `+page.svelte` to be rendered.
 
 There are some basic meta tags setup for SEO and social media sharing, including a generated open graph image (courtesy of [og-image.vercel.app](https://og-image.vercel.app)).
 
@@ -60,15 +60,15 @@ Feel free to customize this page as you see fit. I included some nice-to-haves l
 
 ## Getting Posts
 
-Your posts can be retrieved via `import { posts } from '$lib/data/posts'`. They are automatically sorted from newest to oldest and contain relevant metadata for each post.
+Your posts can be retrieved via `import { posts } from '$lib/data/posts'`. They are automatically sorted from newest to oldest and contain the metadata for each post.
 
-`$lib/data/posts` should only be imported in `*.server.js` files. It uses some APIs that only work server-side, so it will throw an error if you try to load it on client-side code. (It also is the data source for every post on your website, so you wouldn't want that being bundled with your client code anyways).
+`$lib/data/posts` should only be imported in `*.server.js` files. It uses some APIs that only work server-side, so it will throw an error if you try to load it on client-side code. (It also is the data source for every post on your website, so you wouldn't want that being bundled with your client code anyways!)
 
-If you wish to render an entire post, you will need to import the `.md` file directly (as done in `src/routes/posts/[slug]/+page.js`).
+If you wish to render an entire post, you will need to import the `.md` file directly (as done in `src/routes/post/[slug]/+page.js`).
 
 ## Theme
 
-Most of the site is themed using Tailwind's [typography plugin](https://tailwindcss.com/docs/typography-plugin). You can the configuration for it in `tailwind.config.cjs`. As mentioned at the beginning of this post, the overall theme is taken from [Tailwind's "Spotlight"](https://spotlight.tailwindui.com/).
+Most of the site is themed using Tailwind's [typography plugin](https://tailwindcss.com/docs/typography-plugin). You can view the configuration in `tailwind.config.cjs`. As mentioned at the beginning of this post, the overall theme is taken from [Tailwind's "Spotlight"](https://spotlight.tailwindui.com/).
 
 If you wish to change the theme of your code blocks, you can edit the `src/prism.css` file. Prism themes can be [found here](https://github.com/PrismJS/prism-themes/tree/master/themes).
 

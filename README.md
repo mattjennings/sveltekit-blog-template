@@ -1,10 +1,6 @@
-# ⚠️ Freeze until SvelteKit 1.0 ⚠️
-
-Due to the frequency of breaking changes to SvelteKit this template won't receive updates until 1.0 is out. It is currently working with v1.0.0-next.511
-
 # SvelteKit Blog Template
 
-A SvelteKit blog template built on mdsvex and tailwind.
+A SvelteKit blog template built on mdsvex and Tailwind.
 
 [Demo](https://sveltekit-blog-template.vercel.app)
 
